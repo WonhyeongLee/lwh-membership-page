@@ -19,6 +19,7 @@ module.exports = {
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended-type-checked",
+    "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:jsx-a11y/recommended",
     "prettier",
@@ -33,10 +34,11 @@ module.exports = {
       jsx: true,
     },
   },
-  plugins: ["react-refresh"],
+  plugins: ["react-refresh","react"],
   rules: {
     "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
     "react/prop-types": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
+    "react/react-in-jsx-scope": "off",
   },
 };
