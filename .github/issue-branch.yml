@@ -1,13 +1,14 @@
-# https://github.com/robvanderleek/create-issue-branch#option-2-configure-github-action
-mode: auto
-silent: true
-branchName: "issue-${issue.number}/${issue.title,}"
-autoCloseIssue: true
+# branchName: "${issue.number}-${issue.title}"
+branchName: "${issue.number}"
 gitSafeReplacementChar: "-"
 branches:
-  - label: feat
+  - label: '*'
     prefix: feature/
-  - label: bug
-    prefix: bugfix/
-  - label: refactor
-    prefix: refactor/
+# branches:
+#   - label: feat
+#     prefix: feature/
+#   - label: bug
+#     prefix: bugfix/
+#   - label: refactor
+#     prefix: refactor/
+autoCloseIssue: true
