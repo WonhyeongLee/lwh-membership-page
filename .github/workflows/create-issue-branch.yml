@@ -1,0 +1,20 @@
+name: Create Issue Branch for Labels
+
+on:
+  issues:
+    types: [labeled]
+
+jobs:
+  create_issue_branch:
+    runs-on: ubuntu-latest
+    if: |
+      github.event.label.name == 'feat' || 
+      github.event.label.name == 'bug' || 
+      github.event.label.name == 'refactor'
+    steps:
+    - name: Create Issue Branch
+      uses: robvanderleek/create-issue-branch@master
+      with:
+        branchName: features/${{ github.event.issue.number }}-${{ github.event.issue.title }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
