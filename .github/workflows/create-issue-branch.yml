@@ -1,21 +1,69 @@
-name: Create Issue Branch
+name: Create Issue and Branch
 
 on:
   issues:
-    types: [ labeled ]
-    
+    types: [labeled]
+
 jobs:
-  create_issue_branch:
+  create-issue-and-branch:
     runs-on: ubuntu-latest
-    if: |
-      github.event.label.name == 'feat' || 
-      github.event.label.name == 'bug' || 
-      github.event.label.name == 'refactor'
     steps:
-    - name: Create Issue Branch
-      id: Create_Issue_Branch
-      uses: robvanderleek/create-issue-branch@main
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    - name: Echo branch name
-      run: echo ${{ steps.Create_Issue_Branch.outputs.branchName }}
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Create Branch Based on Issue
+        id: create-branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issueNumber = context.issue.number;
+            const issueTitle = context.payload.issue.title;
+            const label = context.payload.label.name;
+            const title = issueTitle.replace(/\s/g, '_');
+
+            let prefix = '';
+            switch(label) {
+              case 'feat':
+                prefix = 'feature/';
+                break;
+              case 'bug':
+                prefix = 'bugfix/';
+                break;
+              case 'refactor':
+                prefix = 'refactor/';
+                break;
+              case 'docs':
+                prefix = 'document/';
+                break;
+              default:
+                break;
+            }
+
+            if (!prefix) {
+              console.log('No prefix assigned. Skipping branch creation.');
+              return;
+            }
+            
+            const branchName = `${prefix}${issueNumber}-${title}`;
+            const ref = 'heads/' + branchName;
+            const sha = await github.rest.repos.getBranch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              branch: 'main'
+            }).then(res => res.data.commit.sha);
+            
+            // 브랜치를 생성
+            await github.rest.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: `refs/${ref}`,
+              sha: sha
+            });
+            
+            // 생성된 브랜치에 대한 정보를 이슈에 커멘트를 남김
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `A branch has been created for this issue: ${branchName}.`
+            });
