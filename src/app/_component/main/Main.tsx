@@ -13,15 +13,15 @@ import MembershipBenefits from '../membershipBenefits/MembershipBenefits';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Observer);
 
-ScrollTrigger.config({
-  autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-});
-
-ScrollTrigger.clearScrollMemory('manual');
-window.history.scrollRestoration = 'manual';
-
 const Main = () => {
   useLayoutEffect(() => {
+    ScrollTrigger.config({
+      autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
+    });
+
+    ScrollTrigger.clearScrollMemory('manual');
+    window.history.scrollRestoration = 'manual';
+
     window.scrollTo(0, 0);
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
