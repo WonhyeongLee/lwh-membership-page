@@ -1,7 +1,6 @@
-import Main from "@/app/_component/main/Main";
+import Main from '@/app/_component/main/Main';
 
 const MainPage = () => {
-
   return (
     <>
       <Main />

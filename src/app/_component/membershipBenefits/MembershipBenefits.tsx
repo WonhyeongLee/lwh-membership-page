@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import * as styles from "./MembershipBenefits.css";
-import { membershipBenefitsData } from "../../../assets/MembershipBenefits";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { useRef, useState } from 'react';
+
+import * as styles from './MembershipBenefits.css';
+import { membershipBenefitsData } from '../../../assets/MembershipBenefits';
 
 const MembershipBenefits = () => {
   const benefitsListRef = useRef<HTMLDivElement>(null);
@@ -15,7 +16,7 @@ const MembershipBenefits = () => {
   const defaultTitle = membershipBenefitsData[0].title;
   const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
   const selectedBenefits = membershipBenefitsData.find(
-    (benefit) => benefit.title === selectedTitle,
+    benefit => benefit.title === selectedTitle,
   )?.benefits;
   const handleItemClick = (title: string): void => {
     if (!isAnimatingRef.current) {
@@ -24,7 +25,7 @@ const MembershipBenefits = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent, title: string): void => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       handleItemClick(title);
     }
   };
@@ -33,39 +34,39 @@ const MembershipBenefits = () => {
     const membershipBenefitsTl = gsap.timeline({
       scrollTrigger: {
         trigger: membershipBenefitsContainerRef.current,
-        start: "top top",
-        end: "bottom top-=200",
+        start: 'top top',
+        end: 'bottom top-=200',
         pin: true,
         scrub: true,
-        toggleActions: "play reverse play reverse",
+        toggleActions: 'play reverse play reverse',
       },
     });
 
     membershipBenefitsTl.from(membershipBenefitsContainerRef.current, {
       opacity: 0,
       duration: 0.3,
-      ease: "power2.InOut",
+      ease: 'power2.InOut',
     });
 
     membershipBenefitsTl.from(membershipHeadingRef.current, {
       yPercent: -50,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.InOut",
+      ease: 'power2.InOut',
     });
 
     membershipBenefitsTl.from(membershipBenefitsListRef.current, {
       xPercent: 50,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.InOut",
+      ease: 'power2.InOut',
     });
 
     membershipBenefitsTl.from(benefitsListRef.current, {
       xPercent: -50,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.InOut",
+      ease: 'power2.InOut',
     });
   });
   // benefitsList 전환 애니메이션
@@ -97,13 +98,13 @@ const MembershipBenefits = () => {
         <div className={styles.ImageWrapper}>
           <img
             className={styles.ImageStyle}
-            src={"https://via.placeholder.com/400"}
+            src={'https://via.placeholder.com/400'}
             alt=""
           />
         </div>
         <ul ref={membershipBenefitsDataRef} className={styles.BenefitsList}>
           {selectedBenefits ? (
-            selectedBenefits.map((benefit) => (
+            selectedBenefits.map(benefit => (
               <li key={benefit.id} className={styles.BenefitsListItem}>
                 {benefit.benefit}
               </li>
@@ -125,14 +126,14 @@ const MembershipBenefits = () => {
           {membershipBenefitsData.map((benefit, index) => (
             <li key={index} className={styles.MembershipListItem}>
               <img
-                src={"https://via.placeholder.com/100"}
+                src={'https://via.placeholder.com/100'}
                 alt={benefit.title}
                 className={styles.MembershipListImage}
               />
               <button
                 className={styles.MembershipListButton}
                 onClick={() => handleItemClick(benefit.title)}
-                onKeyDown={(e) => handleKeyDown(e, benefit.title)}
+                onKeyDown={e => handleKeyDown(e, benefit.title)}
               >
                 <strong>{benefit.title}</strong>
                 <p>{benefit.description}</p>

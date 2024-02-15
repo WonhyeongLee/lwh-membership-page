@@ -1,67 +1,67 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle } from '@vanilla-extract/css';
 
 interface CustomStyle {
   [key: string]: string | number;
 }
 
 const textSizeAdjust: CustomStyle = {
-  "-moz-text-size-adjust": "none",
-  "-webkit-text-size-adjust": "none",
-  "text-size-adjust": "none",
+  '-moz-text-size-adjust': 'none',
+  '-webkit-text-size-adjust': 'none',
+  'text-size-adjust': 'none',
 };
 
-globalStyle("#root", {
-  height: "100%",
+globalStyle('#root', {
+  height: '100%',
 });
 
-globalStyle("*,:before,:after", {
-  boxSizing: "border-box",
+globalStyle('*,:before,:after', {
+  boxSizing: 'border-box',
   margin: 0,
 });
 
-globalStyle("html", textSizeAdjust);
+globalStyle('html', textSizeAdjust);
 
-globalStyle("body, h1, h2, h3, h4, p, figure, blockquote, dl, dd", {
+globalStyle('body, h1, h2, h3, h4, p, figure, blockquote, dl, dd', {
   marginBlockEnd: 0,
 });
 
-globalStyle("ul, ol, li", {
-  listStyle: "none",
+globalStyle('ul, ol, li', {
+  listStyle: 'none',
   padding: 0,
   margin: 0,
 });
 
-globalStyle("body", {
-  minHeight: "100vh",
+globalStyle('body', {
+  minHeight: '100vh',
   lineHeight: 1.5,
 });
 
-globalStyle("h1, h2, h3, h4, button, input, label", {
+globalStyle('h1, h2, h3, h4, button, input, label', {
   lineHeight: 1.1,
 });
 
-globalStyle("h1, h2, h3, h4", {
-  textWrap: "balance",
+globalStyle('h1, h2, h3, h4', {
+  textWrap: 'balance',
 });
 
-globalStyle("a:not([class])", {
-  textDecorationSkipInk: "auto",
-  color: "currentColor",
+globalStyle('a:not([class])', {
+  textDecorationSkipInk: 'auto',
+  color: 'currentColor',
 });
 
-globalStyle("img, picture", {
-  maxWidth: "100%",
-  display: "block",
+globalStyle('img, picture', {
+  maxWidth: '100%',
+  display: 'block',
 });
 
-globalStyle("input, button, textarea, select", {
-  font: "inherit",
+globalStyle('input, button, textarea, select', {
+  font: 'inherit',
 });
 
-globalStyle("textarea:not([rows])", {
-  minHeight: "10em",
+globalStyle('textarea:not([rows])', {
+  minHeight: '10em',
 });
 
-globalStyle(":target", {
-  scrollMarginBlock: "5ex",
+globalStyle(':target', {
+  scrollMarginBlock: '5ex',
 });

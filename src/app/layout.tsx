@@ -1,11 +1,12 @@
-import { Inter } from 'next/font/google'
 import type { Metadata } from 'next';
+
+import { Inter } from 'next/font/google';
 import '@/app/RootLayout.css';
 
 const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
-})
+});
 
 export const metadata: Metadata = {
   title: '이원형 멤버쉽 사이트',
@@ -19,7 +20,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} antialiased`}><main>{children}</main></body>
+      <body className={`${inter.className} antialiased`}>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

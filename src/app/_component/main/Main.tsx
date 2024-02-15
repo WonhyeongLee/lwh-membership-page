@@ -1,30 +1,30 @@
 'use client';
 
-import { useLayoutEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import ScrollToPlugin from "gsap/ScrollToPlugin";
-import Observer from "gsap/Observer";
-import Introduction from "../introduction/Introduction";
-import CommonBenefits from "../commonBenefits/CommonBenefits";
-import MembershipBenefits from "../membershipBenefits/MembershipBenefits";
-import Checkout from "../checkout/Checkout";
+import gsap from 'gsap';
+import Observer from 'gsap/Observer';
+import ScrollToPlugin from 'gsap/ScrollToPlugin';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLayoutEffect } from 'react';
+
+import Checkout from '../checkout/Checkout';
+import CommonBenefits from '../commonBenefits/CommonBenefits';
+import Introduction from '../introduction/Introduction';
+import MembershipBenefits from '../membershipBenefits/MembershipBenefits';
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Observer);
 
 ScrollTrigger.config({
-  autoRefreshEvents: "visibilitychange,DOMContentLoaded,load",
+  autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
 });
 
-ScrollTrigger.clearScrollMemory("manual");
-window.history.scrollRestoration = "manual";
+ScrollTrigger.clearScrollMemory('manual');
+window.history.scrollRestoration = 'manual';
 
 const Main = () => {
-
   useLayoutEffect(() => {
     window.scrollTo(0, 0);
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
   }, []);
 
@@ -35,7 +35,7 @@ const Main = () => {
       <MembershipBenefits />
       <Checkout />
     </>
-  )
-}
+  );
+};
 
-export default Main
+export default Main;

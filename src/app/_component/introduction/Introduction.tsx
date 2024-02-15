@@ -1,8 +1,9 @@
-import * as styles from "./Introduction.css";
-import Observer from "gsap/Observer";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
-import gsap from "gsap";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import Observer from 'gsap/Observer';
+import { useRef } from 'react';
+
+import * as styles from './Introduction.css';
 
 const Introduction = () => {
   const introContainer = useRef<HTMLDivElement>(null);
@@ -14,7 +15,7 @@ const Introduction = () => {
   useGSAP(
     () => {
       const scrollObserver = Observer.create({
-        type: "wheel,touch,scroll",
+        type: 'wheel,touch,scroll',
         preventDefault: true,
       });
 
@@ -22,7 +23,7 @@ const Introduction = () => {
         xPercent: -50,
         opacity: 0,
         duration: 1,
-        ease: "power2.In",
+        ease: 'power2.In',
       });
 
       gsap.from(`.${styles.firstIntroText}`, {
@@ -31,9 +32,9 @@ const Introduction = () => {
         duration: 1,
         stagger: 0.3,
         delay: 0.5,
-        ease: "power2.In",
+        ease: 'power2.In',
         onComplete: () => {
-          console.log("complete");
+          console.log('complete');
           scrollObserver.kill();
         },
       });
@@ -46,12 +47,12 @@ const Introduction = () => {
       const introductionTl = gsap.timeline({
         scrollTrigger: {
           trigger: introContainer.current,
-          start: "top+=10 top",
-          end: "+=2000",
+          start: 'top+=10 top',
+          end: '+=2000',
           scrub: 1,
           pin: true,
           anticipatePin: 1,
-          toggleActions: "play reverse play reverse",
+          toggleActions: 'play reverse play reverse',
         },
       });
 
@@ -61,17 +62,19 @@ const Introduction = () => {
         opacity: 0,
         duration: 1,
         stagger: 0.3,
-        ease: "power2.InOut",
+        ease: 'power2.InOut',
       });
 
-      if (secTextSection.current === null) return;
+      if (secTextSection.current === null) {
+        return;
+      }
 
       introductionTl.to(`.${styles.secIntroText}`, {
         y: -872,
         opacity: 1,
         duration: 0.5,
         stagger: 0.2,
-        ease: "power2.out",
+        ease: 'power2.out',
       });
     },
     { scope: textSection },

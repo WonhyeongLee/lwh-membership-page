@@ -1,6 +1,7 @@
-import { useRef } from "react";
-import { paymentData } from "../../../../assets/PaymentData";
-import * as styles from "./MembershipPrice.css";
+import { useRef } from 'react';
+
+import * as styles from './MembershipPrice.css';
+import { paymentData } from '../../../../assets/PaymentData';
 
 const MembershipPrice = () => {
   const membershipPriceContainerRef = useRef<HTMLDivElement>(null);
@@ -12,7 +13,7 @@ const MembershipPrice = () => {
     >
       <h2 className={styles.MembershipPriceHeading}>멤버쉽 가격 및 후원하기</h2>
       <ul className={styles.MembershipLevelList}>
-        {paymentData.map((membershipLevel) => (
+        {paymentData.map(membershipLevel => (
           <li
             key={membershipLevel.title}
             className={styles.MembershipLevelItem}

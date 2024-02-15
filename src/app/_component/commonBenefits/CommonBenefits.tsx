@@ -1,9 +1,10 @@
-import React from "react";
-import * as styles from "./CommonBenefits.css";
-import gsap from "gsap";
-import { useRef } from "react";
-import { useGSAP } from "@gsap/react";
-import { commonBenefitsData } from "../../../assets/CommonBenefits";
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import React from 'react';
+import { useRef } from 'react';
+
+import * as styles from './CommonBenefits.css';
+import { commonBenefitsData } from '../../../assets/CommonBenefits';
 
 const CommonBenefits = () => {
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
@@ -18,11 +19,11 @@ const CommonBenefits = () => {
     const commonBenefitsTl = gsap.timeline({
       scrollTrigger: {
         trigger: commonBenefitsContainerRef.current,
-        start: "top top",
-        end: "bottom top-=200",
+        start: 'top top',
+        end: 'bottom top-=200',
         scrub: 1,
         pin: true,
-        toggleActions: "play reverse play reverse",
+        toggleActions: 'play reverse play reverse',
       },
     });
 
@@ -30,15 +31,15 @@ const CommonBenefits = () => {
       yPercent: -50,
       opacity: 0,
       duration: 0.5,
-      ease: "power2.InOut",
+      ease: 'power2.InOut',
     });
 
-    commonBenefitsItemListrefs.current.forEach((ref) => {
+    commonBenefitsItemListrefs.current.forEach(ref => {
       commonBenefitsTl.fromTo(
         ref.current,
         { xPercent: -50, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.4, ease: "power2.out" },
-        "<0.5",
+        { xPercent: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
+        '<0.5',
       );
     });
   });
@@ -66,7 +67,7 @@ const CommonBenefits = () => {
             ref={commonBenefitsItemListrefs.current[index]}
           >
             <img
-              src={benefit.image || "https://placehold.co/338x259"}
+              src={benefit.image || 'https://placehold.co/338x259'}
               alt={`${benefit.title} 이미지`}
               className={styles.CommonBenefitImage}
             />

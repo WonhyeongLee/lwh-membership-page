@@ -1,4 +1,4 @@
-import * as styles from "./HeaderNav.css";
+import * as styles from './HeaderNav.css';
 
 const HeaderNav = () => {
   return (
