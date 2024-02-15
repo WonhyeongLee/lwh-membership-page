@@ -1,14 +1,12 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "eslint:recommended",
+    "next",
     "plugin:@typescript-eslint/recommended",
     "plugin:prettier/recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
     "next/core-web-vitals"
   ],
-  "plugins": ["@typescript-eslint", "import", "prettier"],
+  "plugins": ["@typescript-eslint", "import"],
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": 2021
@@ -62,20 +60,17 @@
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          ["parent", "sibling"],
-          "object",
-          "type",
-          "index"
-        ],
+        "groups": ["builtin","external","internal",["parent", "sibling"],"index","object","type","unknown"],
         "pathGroups": [
           {
-            "pattern": "react",
-            "group": "external",
+            "pattern": "next",
+            "group": "builtin",
             "position": "before"
+          },
+          {
+            "pattern": "**/*.css.ts",
+            "group": "unknown",
+            "position": "after"
           }
         ],
         "pathGroupsExcludedImportTypes": ["react", "next"],
