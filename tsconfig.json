@@ -17,6 +17,7 @@
     "noEmit": true,
     "noImplicitAny": true,
     "noImplicitThis": true,
+    "incremental": true,
     "jsx": "react-jsx",
     "plugins": [
       {
