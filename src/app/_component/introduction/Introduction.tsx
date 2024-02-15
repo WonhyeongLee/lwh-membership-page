@@ -1,6 +1,7 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Observer from 'gsap/Observer';
+import Image from 'next/image';
 import { useRef } from 'react';
 
 import * as styles from './Introduction.css';
@@ -19,7 +20,7 @@ const Introduction = () => {
         preventDefault: true,
       });
 
-      gsap.from(imageRef.current, {
+      gsap.from(imageRef.current!, {
         xPercent: -50,
         opacity: 0,
         duration: 1,
@@ -46,7 +47,7 @@ const Introduction = () => {
     () => {
       const introductionTl = gsap.timeline({
         scrollTrigger: {
-          trigger: introContainer.current,
+          trigger: introContainer.current!,
           start: 'top+=10 top',
           end: '+=2000',
           scrub: 1,
@@ -83,8 +84,10 @@ const Introduction = () => {
   return (
     <section ref={introContainer} className={styles.introContainer} id="intro">
       <div className={styles.introImageContainer} ref={imageRef}>
-        <img
+        <Image
           className={styles.profileImage}
+          width={600}
+          height={750}
           src={`/images/profile.png`}
           alt="프로필"
         />

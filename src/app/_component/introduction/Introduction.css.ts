@@ -11,7 +11,10 @@ export const introContainer = style({
 });
 
 export const introImageContainer = style({
-  width: '60%',
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  margin: 'auto',
   flex: 1,
   filter: `
   drop-shadow(5px 0px 0px rgba(240, 46, 170, 0.4))
@@ -23,10 +26,8 @@ export const introImageContainer = style({
 });
 
 export const profileImage = style({
-  objectFit: 'contain',
   minWidth: '150px',
   minHeight: '150px',
-  margin: 'auto',
   clipPath: 'polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%)',
 });
 
