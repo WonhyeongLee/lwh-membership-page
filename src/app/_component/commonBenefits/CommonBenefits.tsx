@@ -1,5 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import Image from 'next/image';
 import React from 'react';
 import { useRef } from 'react';
 
@@ -66,10 +67,12 @@ const CommonBenefits = () => {
             className={styles.CommonBenefitItem}
             ref={commonBenefitsItemListrefs.current[index]}
           >
-            <img
-              src={benefit.image || 'https://placehold.co/338x259'}
-              alt={`${benefit.title} 이미지`}
+            <Image
               className={styles.CommonBenefitImage}
+              width={338}
+              height={259}
+              src={benefit.image || 'https://placehold.co/338x259.png'}
+              alt={`${benefit.title} 이미지`}
             />
             <div className={styles.CommonBenefitContent}>
               <p className={styles.CommonBenefitTitle}>{benefit.title}</p>

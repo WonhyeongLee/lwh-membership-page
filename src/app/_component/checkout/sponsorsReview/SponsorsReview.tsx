@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 import * as styles from './SponsorsReview.css';
 import { sponsorsReviewData } from '../../../../assets/SponsorsReviewData';
 const SponsorsReview = () => {
@@ -9,8 +11,10 @@ const SponsorsReview = () => {
           <div key={index} className={styles.SponsorsReviewCard}>
             <div className={styles.SponsorsReviewInfo}>
               <div className={styles.SponsorsReviewAuthor}>
-                <img
-                  src="https://via.placeholder.com/25"
+                <Image
+                  width={25}
+                  height={25}
+                  src={'https://placehold.co/25.png'}
                   alt={`${review.name}의 프로필 이미지`}
                 />
                 <span>{review.name}</span>

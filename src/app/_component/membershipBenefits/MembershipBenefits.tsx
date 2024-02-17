@@ -1,5 +1,6 @@
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
+import Image from 'next/image';
 import { useRef, useState } from 'react';
 
 import * as styles from './MembershipBenefits.css';
@@ -96,10 +97,12 @@ const MembershipBenefits = () => {
     >
       <div ref={benefitsListRef} className={styles.BenefitsListWrapper}>
         <div className={styles.ImageWrapper}>
-          <img
+          <Image
             className={styles.ImageStyle}
-            src={'https://via.placeholder.com/400'}
-            alt=""
+            src={'https://placehold.co/400.png'}
+            width={400}
+            height={400}
+            alt="멤버쉽 혜택 이미지"
           />
         </div>
         <ul ref={membershipBenefitsDataRef} className={styles.BenefitsList}>
@@ -125,8 +128,10 @@ const MembershipBenefits = () => {
         <ul ref={membershipBenefitsListRef}>
           {membershipBenefitsData.map((benefit, index) => (
             <li key={index} className={styles.MembershipListItem}>
-              <img
-                src={'https://via.placeholder.com/100'}
+              <Image
+                src={'https://placehold.co/100.png'}
+                width={100}
+                height={100}
                 alt={benefit.title}
                 className={styles.MembershipListImage}
               />
