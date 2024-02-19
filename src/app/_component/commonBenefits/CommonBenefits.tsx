@@ -8,7 +8,13 @@ import { useRef } from 'react';
 import * as styles from './CommonBenefits.css';
 import { commonBenefitsData } from '../../../assets/CommonBenefits';
 
-const CommonBenefits = () => {
+import type { CommonBenefit } from '@/model/membershipInformation.ts';
+
+interface CommonBenefitsProps {
+  commonBenefits: CommonBenefit[];
+}
+
+const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);

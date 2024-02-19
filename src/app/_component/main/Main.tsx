@@ -23,9 +23,9 @@ const Main = async () => {
   return (
     <>
       <Introduction />
-      <CommonBenefits />
-      <MembershipBenefits />
-      <Checkout />
+      <CommonBenefits commonBenefits={commonBenefits} />
+      <MembershipBenefits membershipBenefits={membershipBenefits} />
+      <Checkout paymentOption={paymentOptions} />
     </>
   );
 };

@@ -7,7 +7,15 @@ import { useRef, useState } from 'react';
 import * as styles from './MembershipBenefits.css';
 import { membershipBenefitsData } from '../../../assets/MembershipBenefits';
 
-const MembershipBenefits = () => {
+import type { MembershipBenefit } from '@/model/membershipInformation.ts';
+
+interface MembershipBenefitProps {
+  membershipBenefits: MembershipBenefit[];
+}
+
+const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
+  membershipBenefits,
+}) => {
   const benefitsListRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsDataRef = useRef<HTMLUListElement>(null);

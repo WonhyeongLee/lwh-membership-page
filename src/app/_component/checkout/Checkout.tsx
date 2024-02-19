@@ -6,7 +6,12 @@ import SponsorsReview from '@/app/_component/checkout/sponsorsReview/SponsorsRev
 
 import * as styles from './Checkout.css.ts';
 
-const Checkout = () => {
+import type { PaymentOption } from '@/model/membershipInformation.ts';
+
+interface PaymentOptionProps {
+  paymentOption: PaymentOption[];
+}
+const Checkout: React.FC<PaymentOptionProps> = ({ paymentOption }) => {
   const checkoutRef = useRef<HTMLDivElement>(null);
 
   return (
