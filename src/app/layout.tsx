@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 
 import { Inter } from 'next/font/google';
+
 import '@/app/RootLayout.css';
+import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
+import { MSWComponent } from '@/app/_component/MSWComponent.tsx';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -21,7 +24,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${inter.className} antialiased`}>
-        <main>{children}</main>
+        <MSWComponent />
+        <GSAPWrapper>
+          <main>{children}</main>
+        </GSAPWrapper>
       </body>
     </html>
   );
