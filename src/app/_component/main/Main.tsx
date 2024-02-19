@@ -1,32 +1,25 @@
-'use client';
-
-import gsap from 'gsap';
-import Observer from 'gsap/Observer';
-import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLayoutEffect } from 'react';
-
+// import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
 import Checkout from '../checkout/Checkout';
 import CommonBenefits from '../commonBenefits/CommonBenefits';
 import Introduction from '../introduction/Introduction';
 import MembershipBenefits from '../membershipBenefits/MembershipBenefits';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Observer);
+async function getMembershipInfo() {
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/membershipInformation`,
+  );
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+  const commonBenefitsData = await res.json();
 
-const Main = () => {
-  useLayoutEffect(() => {
-    ScrollTrigger.config({
-      autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-    });
+  return commonBenefitsData;
+}
 
-    ScrollTrigger.clearScrollMemory('manual');
-    window.history.scrollRestoration = 'manual';
+const Main = async () => {
+  const data = await getMembershipInfo();
 
-    window.scrollTo(0, 0);
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+  console.log(data);
 
   return (
     <>
@@ -39,3 +32,4 @@ const Main = () => {
 };
 
 export default Main;
+// commonBenefits, membershipBenefits, paymentOptions
