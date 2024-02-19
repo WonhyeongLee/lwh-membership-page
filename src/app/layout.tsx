@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import '@/app/RootLayout.css';
+import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
 import { MockProvider } from '@/app/_component/MockProvider.tsx';
 
 const inter = Inter({
@@ -23,9 +24,11 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body className={`${inter.className} antialiased`}>
-        <main>
-          <MockProvider>{children}</MockProvider>
-        </main>
+        <MockProvider>
+          <GSAPWrapper>
+            <main>{children}</main>
+          </GSAPWrapper>
+        </MockProvider>
       </body>
     </html>
   );

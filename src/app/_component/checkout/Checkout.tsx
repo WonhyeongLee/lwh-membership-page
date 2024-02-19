@@ -1,3 +1,4 @@
+'use client';
 import { useRef } from 'react';
 
 import MembershipPrice from '@/app/_component/checkout/membershipPrice/MembershipPrice.tsx';
