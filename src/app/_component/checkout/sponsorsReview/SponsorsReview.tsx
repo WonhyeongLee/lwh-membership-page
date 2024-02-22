@@ -1,13 +1,18 @@
 import Image from 'next/image';
 
 import * as styles from './SponsorsReview.css';
-import { sponsorsReviewData } from '../../../../assets/SponsorsReviewData';
-const SponsorsReview = () => {
+
+import type { SponsorsReviews } from '@/model/membershipInformation.ts';
+interface SponsorsReviewProps {
+  sponsorsReviews: SponsorsReviews[];
+}
+
+const SponsorsReview = ({ sponsorsReviews }: SponsorsReviewProps) => {
   return (
     <section className={styles.SponsorsReviewSection}>
       <h2 className={styles.SponsorsReviewHeading}>후원자님들의 후기</h2>
       <div className={styles.SponsorsReviewContainer}>
-        {sponsorsReviewData.map((review, index) => (
+        {sponsorsReviews.map((review, index) => (
           <div key={index} className={styles.SponsorsReviewCard}>
             <div className={styles.SponsorsReviewInfo}>
               <div className={styles.SponsorsReviewAuthor}>
