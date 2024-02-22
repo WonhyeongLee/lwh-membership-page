@@ -1,3 +1,5 @@
+/* eslint-disable semi */
+/* eslint-disable prettier/prettier */
 export interface CommonBenefit {
   id: string;
   title: string;
@@ -85,7 +87,7 @@ export const membershipInformation: MembershipInformation = {
     {
       title: '라이트',
       image: 'images/lite.png',
-      price: 990, // "가격"을 "price"로 변경하여 일관성 있는 명명 규칙 적용
+      price: 990,
     },
     {
       title: '일반',
@@ -98,4 +100,4 @@ export const membershipInformation: MembershipInformation = {
       price: 4990,
     },
   ],
-};
+}
