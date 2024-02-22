@@ -23,11 +23,17 @@ export interface PaymentOption {
   image: string;
   price: number;
 }
+export interface SponsorsReviews {
+  name: string;
+  review: string;
+  rating: number;
+}
 
 export interface MembershipInformation {
   commonBenefits: CommonBenefit[];
   membershipBenefits: MembershipBenefit[];
   paymentOptions: PaymentOption[];
+  sponsorsReviews: SponsorsReviews[];
 }
 
 export const membershipInformation: MembershipInformation = {
@@ -83,20 +89,42 @@ export const membershipInformation: MembershipInformation = {
       ],
     },
   ],
+  sponsorsReviews: [
+    {
+      name: '근박',
+      review: '이길수있어요. 힘내봐요. 서렌치지마요.',
+      rating: 5,
+    },
+    {
+      name: '기박',
+      review: '돈이 아깝고 머리가 아파요. 0점이 없어서 1점 드릴게요.',
+      rating: 1,
+    },
+    {
+      name: 'TEST',
+      review: '돈이 아깝고 머리가 아파요. 0점이 없어서 1점 드릴게요.',
+      rating: 1,
+    },
+    {
+      name: '김현',
+      review: '코스피 나스닥 빝코 다 떨어지고 있어요. 살려주세요',
+      rating: 1,
+    },
+  ],
   paymentOptions: [
     {
       title: '라이트',
-      image: 'images/lite.png',
+      image: '',
       price: 990,
     },
     {
       title: '일반',
-      image: 'images/normal.png',
+      image: '',
       price: 2990,
     },
     {
       title: '프리미엄',
-      image: 'images/premium.png',
+      image: '',
       price: 4990,
     },
   ],

@@ -9,4 +9,14 @@ export const sponsorsReviewData = [
     review: '돈이 아깝고 머리가 아파요. 0점이 없어서 1점 드릴게요.',
     rating: 1,
   },
+  {
+    name: 'TEST',
+    review: '돈이 아깝고 머리가 아파요. 0점이 없어서 1점 드릴게요.',
+    rating: 1,
+  },
+  {
+    name: '김현',
+    review: '코스피 나스닥 빝코 다 떨어지고 있어요. 살려주세요',
+    rating: 1,
+  },
 ];
