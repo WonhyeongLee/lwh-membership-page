@@ -1,39 +1,26 @@
-'use client';
-
-import gsap from 'gsap';
-import Observer from 'gsap/Observer';
-import ScrollToPlugin from 'gsap/ScrollToPlugin';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { useLayoutEffect } from 'react';
+import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
 
 import Checkout from '../checkout/Checkout';
 import CommonBenefits from '../commonBenefits/CommonBenefits';
 import Introduction from '../introduction/Introduction';
 import MembershipBenefits from '../membershipBenefits/MembershipBenefits';
 
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin, Observer);
+const Main = async () => {
+  const {
+    commonBenefits,
+    membershipBenefits,
+    paymentOptions,
+    sponsorsReviews,
+  } = await getMembershipInfo();
 
-const Main = () => {
-  useLayoutEffect(() => {
-    ScrollTrigger.config({
-      autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
-    });
-
-    ScrollTrigger.clearScrollMemory('manual');
-    window.history.scrollRestoration = 'manual';
-
-    window.scrollTo(0, 0);
-    return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, []);
+  console.log(paymentOptions);
 
   return (
     <>
       <Introduction />
-      <CommonBenefits />
-      <MembershipBenefits />
-      <Checkout />
+      <CommonBenefits commonBenefits={commonBenefits} />
+      <MembershipBenefits membershipBenefits={membershipBenefits} />
+      <Checkout sponsorsReviews={sponsorsReviews} />
     </>
   );
 };

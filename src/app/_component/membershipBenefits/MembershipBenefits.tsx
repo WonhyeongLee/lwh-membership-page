@@ -1,12 +1,20 @@
+'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import Image from 'next/image';
 import { useRef, useState } from 'react';
 
 import * as styles from './MembershipBenefits.css';
-import { membershipBenefitsData } from '../../../assets/MembershipBenefits';
 
-const MembershipBenefits = () => {
+import type { MembershipBenefit } from '@/model/membershipInformation.ts';
+
+interface MembershipBenefitProps {
+  membershipBenefits: MembershipBenefit[];
+}
+
+const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
+  membershipBenefits,
+}) => {
   const benefitsListRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsDataRef = useRef<HTMLUListElement>(null);
@@ -14,11 +22,13 @@ const MembershipBenefits = () => {
   const membershipBenefitsListRef = useRef<HTMLUListElement>(null);
   const isAnimatingRef = useRef(false);
 
-  const defaultTitle = membershipBenefitsData[0].title;
+  const defaultTitle = membershipBenefits[0].title;
   const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
-  const selectedBenefits = membershipBenefitsData.find(
+
+  const selectedBenefits = membershipBenefits.find(
     benefit => benefit.title === selectedTitle,
   )?.benefits;
+
   const handleItemClick = (title: string): void => {
     if (!isAnimatingRef.current) {
       setSelectedTitle(title);
@@ -126,7 +136,7 @@ const MembershipBenefits = () => {
           <button className={styles.UpgradeButton}>Upgrade Now</button>
         </div>
         <ul ref={membershipBenefitsListRef}>
-          {membershipBenefitsData.map((benefit, index) => (
+          {membershipBenefits.map((benefit, index) => (
             <li key={index} className={styles.MembershipListItem}>
               <Image
                 src={'https://placehold.co/100.png'}
