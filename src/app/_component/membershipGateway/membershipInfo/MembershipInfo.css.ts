@@ -5,20 +5,32 @@ export const MembershipPriceContainer = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
+  maxWidth: '1200px',
   justifyContent: 'center',
   alignItems: 'center',
+  margin: 'auto',
 });
 
 export const MembershipPriceHeading = style({
-  fontSize: '50px',
+  fontSize: '3vw',
   fontWeight: 'bold',
-  margin: '40px 0',
+  textAlign: 'center',
+  margin: '20px 0',
+});
+
+export const Text = style({
+  fontSize: '1rem',
+  textAlign: 'center',
+  margin: '0 0 20px 0',
+  color: '#666',
 });
 
 export const MembershipLevelList = style({
-  width: '80%',
+  width: '100%',
+  padding: '0',
   display: 'flex',
   justifyContent: 'center',
+  gap: '20px',
 });
 
 export const MembershipLevelItem = style({
@@ -26,17 +38,49 @@ export const MembershipLevelItem = style({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '50%',
+  width: 'calc(50% - 10px)',
   height: '100%',
   borderRadius: '4px',
   gap: '10px',
   fontWeight: 'bold',
   fontSize: '20px',
-  margin: '0 10px',
+  textAlign: 'center',
 });
 
 export const MembershipImageWrapper = style({
-  width: '50%',
+  width: '100%',
+  maxWidth: '300px',
+  height: 'auto',
   overflow: 'hidden',
-  borderRadius: '4px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+});
+
+export const OverlayContainer = style({
+  position: 'relative',
+  width: '100%',
+});
+
+export const Overlay = style({
+  position: 'absolute',
+  top: 0,
+  left: 0,
+  right: 0,
+  bottom: 0,
+  backdropFilter: 'blur(8px)',
+  zIndex: 10,
+});
+
+export const LinkButtons = style({
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  zIndex: 20,
+});
+
+export const Link = style({
+  display: 'block',
+  margin: '10px 0',
 });
