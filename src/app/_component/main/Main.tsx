@@ -1,6 +1,6 @@
+import MembershipGateway from '@/app/_component/membershipGateway/MembershipGateway';
 import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
 
-import Checkout from '../checkout/Checkout';
 import CommonBenefits from '../commonBenefits/CommonBenefits';
 import Introduction from '../introduction/Introduction';
 import MembershipBenefits from '../membershipBenefits/MembershipBenefits';
@@ -20,7 +20,7 @@ const Main = async () => {
       <Introduction />
       <CommonBenefits commonBenefits={commonBenefits} />
       <MembershipBenefits membershipBenefits={membershipBenefits} />
-      <Checkout sponsorsReviews={sponsorsReviews} />
+      <MembershipGateway sponsorsReviews={sponsorsReviews} />
     </>
   );
 };
