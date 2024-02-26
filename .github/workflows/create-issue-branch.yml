@@ -35,6 +35,9 @@ jobs:
               case 'docs':
                 prefix = 'document/';
                 break;
+              case `style`:
+                prefix = `style/`;
+                break;
               default:
                 break;
             }
