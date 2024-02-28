@@ -1,4 +1,4 @@
-import MembershipPrice from '@/app/_component/membershipGateway/membershipInfo/MembershipInfo.tsx';
+import MembershipInfo from '@/app/_component/membershipGateway/membershipInfo/MembershipInfo.tsx';
 import SponsorsReview from '@/app/_component/membershipGateway/sponsorsReview/SponsorsReview.tsx';
 
 import * as styles from './MembershipGateway.css.ts';
@@ -13,7 +13,7 @@ const MembershipGateway = ({ sponsorsReviews }: MembershipGatewayProps) => {
   return (
     <section className={styles.MembershipGatewayContainer}>
       <SponsorsReview sponsorsReviews={sponsorsReviews} />
-      <MembershipPrice />
+      <MembershipInfo />
     </section>
   );
 };

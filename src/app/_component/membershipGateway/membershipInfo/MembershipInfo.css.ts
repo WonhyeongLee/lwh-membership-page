@@ -19,7 +19,7 @@ export const MembershipPriceHeading = style({
 });
 
 export const Text = style({
-  fontSize: '1rem',
+  fontSize: '2vw',
   textAlign: 'center',
   margin: '0 0 20px 0',
   color: '#666',
@@ -73,6 +73,10 @@ export const Overlay = style({
 });
 
 export const LinkButtons = style({
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '10px',
   position: 'absolute',
   top: '50%',
   left: '50%',

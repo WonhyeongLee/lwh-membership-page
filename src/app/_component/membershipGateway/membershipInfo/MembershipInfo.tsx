@@ -1,7 +1,8 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useRef } from 'react';
+
+import Button from '@/app/_component/common/button/Button.tsx';
 
 import * as styles from './MembershipInfo.css.ts';
 import { paymentData } from '../../../../assets/PaymentData';
@@ -23,12 +24,8 @@ const MembershipPrice = () => {
       <div className={styles.OverlayContainer}>
         <div className={styles.Overlay}></div>
         <div className={styles.LinkButtons}>
-          <Link href="#" className={styles.Link}>
-            익명으로 후원하기
-          </Link>
-          <Link href="#" className={styles.Link}>
-            멤버쉽 페이지로 이동
-          </Link>
+          <Button href="#">가입안하고 후원하기</Button>
+          <Button href="#">멤버쉽 페이지로 이동</Button>
         </div>
         <ul className={styles.MembershipLevelList}>
           {paymentData.map(membershipLevel => (
@@ -43,7 +40,6 @@ const MembershipPrice = () => {
                   alt="Placeholder Image"
                   width={300}
                   height={300}
-                  objectFit="cover"
                 />
               </div>
               <div>{membershipLevel.가격.toLocaleString()}원</div>
