@@ -38,6 +38,9 @@ jobs:
               case `style`:
                 prefix = `style/`;
                 break;
+              case `fix`:
+                prefix = `fix/`;
+                break;
               default:
                 break;
             }
