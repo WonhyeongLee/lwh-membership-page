@@ -114,17 +114,17 @@ export const membershipInformation: MembershipInformation = {
   paymentOptions: [
     {
       title: '라이트',
-      image: '',
+      image: '/images/lite.png',
       price: 990,
     },
     {
       title: '일반',
-      image: '',
+      image: '/images/normal.png',
       price: 2990,
     },
     {
       title: '프리미엄',
-      image: '',
+      image: '/images/premium.png',
       price: 4990,
     },
   ],
