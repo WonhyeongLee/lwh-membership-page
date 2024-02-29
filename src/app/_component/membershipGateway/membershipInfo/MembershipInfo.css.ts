@@ -1,6 +1,6 @@
 import { style } from '@vanilla-extract/css';
 
-export const MembershipPriceContainer = style({
+export const MembershipInfoContainer = style({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
@@ -11,7 +11,7 @@ export const MembershipPriceContainer = style({
   margin: 'auto',
 });
 
-export const MembershipPriceHeading = style({
+export const MembershipInfoHeading = style({
   fontSize: '3vw',
   fontWeight: 'bold',
   textAlign: 'center',

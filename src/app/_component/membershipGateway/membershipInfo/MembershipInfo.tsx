@@ -1,16 +1,20 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import Image from 'next/image';
 import { useRef } from 'react';
 
 import Button from '@/app/_component/common/button/Button.tsx';
+import MembershipLevelItem from '@/app/_component/membershipGateway/membershipInfo/MembershipLevelItem.tsx';
+import { PaymentOption } from '@/model/membershipInformation.ts';
 
 import * as styles from './MembershipInfo.css.ts';
-import { paymentData } from '../../../../assets/PaymentData';
 
-const MembershipPrice = () => {
-  const membershipPriceContainerRef = useRef<HTMLDivElement>(null);
+interface MembershipInfoProps {
+  paymentOptions: PaymentOption[];
+}
+
+const MembershipInfo = ({ paymentOptions }: MembershipInfoProps) => {
+  const membershipInfoContainerRef = useRef<HTMLDivElement>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({ scope: overlayRef });
@@ -29,11 +33,11 @@ const MembershipPrice = () => {
 
   return (
     <section
-      className={styles.MembershipPriceContainer}
-      ref={membershipPriceContainerRef}
+      className={styles.MembershipInfoContainer}
+      ref={membershipInfoContainerRef}
     >
       <div>
-        <h2 className={styles.MembershipPriceHeading}>
+        <h2 className={styles.MembershipInfoHeading}>
           멤버쉽 사이트로 이동 후 후원하기
         </h2>
         <p className={styles.Text}>혜택 사용을 위해 가입 후 후원해주세요 !!</p>
@@ -49,22 +53,13 @@ const MembershipPrice = () => {
           </div>
         </div>
         <ul className={styles.MembershipLevelList}>
-          {paymentData.map(membershipLevel => (
-            <li
-              key={membershipLevel.title}
-              className={styles.MembershipLevelItem}
-            >
-              <strong>{membershipLevel.title}</strong>
-              <div className={styles.MembershipImageWrapper}>
-                <Image
-                  src="https://placehold.co/300x300.png"
-                  alt="Placeholder Image"
-                  width={300}
-                  height={300}
-                />
-              </div>
-              <div>{membershipLevel.가격.toLocaleString()}원</div>
-            </li>
+          {paymentOptions.map(({ title, image, price }) => (
+            <MembershipLevelItem
+              key={title}
+              title={title}
+              imageUrl={image || 'https://placehold.co/300x300.png'}
+              price={price}
+            />
           ))}
         </ul>
       </div>
@@ -72,4 +67,4 @@ const MembershipPrice = () => {
   );
 };
 
-export default MembershipPrice;
+export default MembershipInfo;

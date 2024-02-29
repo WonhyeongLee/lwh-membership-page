@@ -3,17 +3,24 @@ import SponsorsReview from '@/app/_component/membershipGateway/sponsorsReview/Sp
 
 import * as styles from './MembershipGateway.css.ts';
 
-import type { SponsorsReviews } from '@/model/membershipInformation.ts'; // 가정한 타입 경로
+import type {
+  SponsorsReviews,
+  PaymentOption,
+} from '@/model/membershipInformation.ts';
 
 interface MembershipGatewayProps {
   sponsorsReviews: SponsorsReviews[];
+  paymentOptions: PaymentOption[];
 }
 
-const MembershipGateway = ({ sponsorsReviews }: MembershipGatewayProps) => {
+const MembershipGateway = ({
+  sponsorsReviews,
+  paymentOptions,
+}: MembershipGatewayProps) => {
   return (
     <section className={styles.MembershipGatewayContainer}>
       <SponsorsReview sponsorsReviews={sponsorsReviews} />
-      <MembershipInfo />
+      <MembershipInfo paymentOptions={paymentOptions} />
     </section>
   );
 };

@@ -20,7 +20,10 @@ const Main = async () => {
       <Introduction />
       <CommonBenefits commonBenefits={commonBenefits} />
       <MembershipBenefits membershipBenefits={membershipBenefits} />
-      <MembershipGateway sponsorsReviews={sponsorsReviews} />
+      <MembershipGateway
+        sponsorsReviews={sponsorsReviews}
+        paymentOptions={paymentOptions}
+      />
     </>
   );
 };
