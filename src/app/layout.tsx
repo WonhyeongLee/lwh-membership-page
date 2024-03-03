@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 
 import { Inter } from 'next/font/google';
 
+import '@/styles/reset.css.ts';
 import '@/app/RootLayout.css';
 import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
 import { MSWComponent } from '@/app/_component/MSWComponent.tsx';
