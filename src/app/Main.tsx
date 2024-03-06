@@ -13,7 +13,7 @@ const Main = async () => {
     sponsorsReviews,
   } = await getMembershipInfo();
 
-  console.log(paymentOptions);
+  // console.log(paymentOptions);
 
   return (
     <>

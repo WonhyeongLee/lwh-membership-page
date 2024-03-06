@@ -36,7 +36,6 @@ const Introduction = () => {
         delay: 0.5,
         ease: 'power2.In',
         onComplete: () => {
-          console.log('complete');
           scrollObserver.kill();
         },
       });
