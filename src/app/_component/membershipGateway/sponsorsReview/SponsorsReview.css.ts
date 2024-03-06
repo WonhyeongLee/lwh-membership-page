@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { baseTheme } from '@/styles/themes.css.ts';
+
 export const SponsorsReviewSection = style({
   display: 'flex',
   flexDirection: 'row',
@@ -41,7 +43,7 @@ export const SponsorsReviewAuthor = style({
   gap: '10px',
 });
 export const SponsorsReviewText = style({
-  fontSize: '16px',
+  fontSize: baseTheme.fontSize.text,
   color: '#333',
   marginBottom: '10px',
   wordWrap: 'break-word',

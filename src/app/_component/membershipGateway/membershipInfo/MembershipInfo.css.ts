@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { baseTheme } from '@/styles/themes.css.ts';
+
 export const MembershipInfoContainer = style({
   flex: 1,
   display: 'flex',
@@ -16,6 +18,7 @@ export const MembershipInfoHeading = style({
   fontWeight: 'bold',
   textAlign: 'center',
   margin: '20px 0',
+  color: baseTheme.color.accent,
 });
 
 export const Text = style({
@@ -43,8 +46,9 @@ export const MembershipLevelItem = style({
   borderRadius: '4px',
   gap: '10px',
   fontWeight: 'bold',
-  fontSize: '20px',
+  fontSize: baseTheme.fontSize.button,
   textAlign: 'center',
+  backgroundColor: baseTheme.color.contentBackground,
 });
 
 export const MembershipImageWrapper = style({
