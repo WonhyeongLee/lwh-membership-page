@@ -12,22 +12,26 @@ export const SponsorsReviewSection = style({
 });
 
 export const SponsorsReviewHeading = style({
+  display: 'block',
   flex: '1',
   textAlign: 'center',
 });
 
+// TODO: 슬라이드 스타일 수정
 export const SponsorsReviewContainer = style({
   display: 'flex',
   flexDirection: 'row',
   flex: '1',
-  width: '100%',
   justifyContent: 'flex-end',
+  width: 'auto',
+  overflowX: 'hidden',
 });
 
 export const SponsorsReviewCard = style({
   display: 'flex',
   flexDirection: 'column',
   flex: '1',
+  width: '100%',
   backgroundColor: 'white',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   padding: '15px',
