@@ -45,10 +45,7 @@ export const SponsorsReviewText = style({
 
 export const SponsorsReviewInfo = style({
   display: 'flex',
-  alignItems: 'center',
   justifyContent: 'space-between',
 });
 
-export const SponsorsReviewRating = style({
-  // 나중에 추가
-});
+export const SponsorsReviewRating = style({});

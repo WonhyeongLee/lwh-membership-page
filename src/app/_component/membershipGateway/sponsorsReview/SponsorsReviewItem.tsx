@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import React from 'react';
 
+import Rating from '@/app/_component/common/Rating.tsx';
+
 import * as styles from './SponsorsReview.css.ts';
 
 interface SponsorsReviewItemProps {
@@ -29,8 +31,7 @@ const SponsorsReviewItem: React.FC<SponsorsReviewItemProps> = ({
           <span>{review.name}</span>
         </div>
         <div className={styles.SponsorsReviewRating}>
-          <span>별</span>
-          <strong>{review.rating}</strong>
+          <Rating rating={review.rating} />
         </div>
       </div>
       <div className={styles.SponsorsReviewText}>{review.review}</div>

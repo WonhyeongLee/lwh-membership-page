@@ -6,7 +6,7 @@ const MAX_RATING = 5;
 
 const Rating: React.FC<RatingProps> = ({ rating }) => {
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       {[...Array(MAX_RATING)].map((_, i) => (
         <StarIcon key={i} filled={i < rating} />
       ))}
