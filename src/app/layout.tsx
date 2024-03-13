@@ -1,14 +1,23 @@
 import type { Metadata } from 'next';
 
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import '@/styles/reset.css.ts';
-import '@/app/RootLayout.css';
 import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
 import { MSWComponent } from '@/app/_component/MSWComponent.tsx';
 
-const inter = Inter({
-  subsets: ['latin'],
+import * as styles from '@/app/RootLayout.css.ts';
+
+const pretendRegular = localFont({
+  src: '../../public/fonts/Pretendard-Regular.subset.woff2',
+  weight: '400',
+  display: 'swap',
+  preload: true,
+});
+
+const pretendBold = localFont({
+  src: '../../public/fonts/Pretendard-Bold.subset.woff2',
+  weight: '700',
   display: 'swap',
 });
 
@@ -24,7 +33,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${pretendRegular.className} ${pretendBold.className} antialiased ${styles.MainContainer}`}
+      >
         <MSWComponent />
         <GSAPWrapper>
           <main>{children}</main>

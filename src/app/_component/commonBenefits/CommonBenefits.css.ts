@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { baseTheme } from '@/styles/themes.css.ts';
+
 const responsiveFontSize = {
   base: '3rem', // 기본 폰트 크기
   medium: '2.5rem', // 중간 화면 크기
@@ -16,8 +18,6 @@ export const CommonBenefitsContainer = style({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  // border: "1px solid purple",
-  // margin: "10px 0",
   padding: '60px 0',
   textAlign: 'center',
 });
@@ -54,7 +54,7 @@ export const CommonBenefitItem = style({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  border: '1px solid black',
+  border: `1px solid ${baseTheme.color.border}`,
   '@media': {
     'screen and (max-width: 768px)': {
       width: '100%',
@@ -65,7 +65,7 @@ export const CommonBenefitItem = style({
 export const CommonBenefitImage = style({
   width: '100%',
   height: 'auto',
-  borderBottom: '1px solid black',
+  borderBottom: `1px solid ${baseTheme.color.border}`,
 });
 
 export const CommonBenefitContent = style({
@@ -90,7 +90,7 @@ export const CommonBenefitDescription = style({
 
 export const CommonBenefitsList = style({
   width: '100%',
-  fontSize: '3rem',
+  fontSize: responsiveFontSize.base,
   fontWeight: 'bold',
   position: 'absolute',
   top: 0,
@@ -107,4 +107,5 @@ export const CommonBenefitsList = style({
       fontSize: responsiveFontSize.xsmall,
     },
   },
+  color: baseTheme.color.accent,
 });

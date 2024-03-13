@@ -1,5 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { baseTheme } from '@/styles/themes.css.ts';
+
 // MembershipBenefits 컴포넌트 스타일
 export const MembershipBenefitsContainer = style({
   position: 'relative',
@@ -11,6 +13,7 @@ export const MembershipBenefitsContainer = style({
   flexDirection: 'row',
   justifyContent: 'center',
   alignItems: 'center',
+  gap: '20px',
 });
 
 // 왼쪽 리스트 스타일
@@ -19,7 +22,11 @@ export const BenefitsListWrapper = style({
   flexDirection: 'column',
   justifyContent: 'flex-end',
   alignItems: 'flex-end',
+  height: '75vh',
   padding: '20px',
+  boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+  borderRadius: '8px',
+  backgroundColor: baseTheme.color.contentBackground,
 });
 
 export const ImageWrapper = style({
@@ -43,7 +50,7 @@ export const BenefitsList = style({
 export const BenefitsListItem = style({
   padding: '10px 15px',
   margin: '0',
-  borderBottom: '1px solid #ddd',
+  borderBottom: `1px solid ${baseTheme.color.border}`,
   fontWeight: 'bold',
   textAlign: 'left',
   width: '100%',
@@ -54,8 +61,8 @@ export const BenefitsListItem = style({
       borderBottom: 'none',
     },
     '&:hover': {
-      backgroundColor: '#f9f9f9',
-      color: '#333',
+      backgroundColor: baseTheme.color.hover,
+      color: baseTheme.color.accent,
     },
   },
 });
@@ -65,13 +72,12 @@ export const MembershipListWrapper = style({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  // width: "50%",
-  maxHeight: '90vh',
-  border: '1px solid #e1e1e1',
+  height: '75vh',
+  border: `1px solid ${baseTheme.color.border}`,
   padding: '60px 20px 20px 20px',
   boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
   borderRadius: '8px',
-  backgroundColor: '#ffffff',
+  backgroundColor: baseTheme.color.background,
 });
 
 export const MembershipHeadingWrapper = style({
@@ -80,23 +86,26 @@ export const MembershipHeadingWrapper = style({
 });
 
 export const MembershipHeading = style({
-  fontSize: '2rem',
+  fontSize: baseTheme.fontSize.title,
+  lineHeight: baseTheme.lineHeight.title,
   fontWeight: 'bold',
   marginBottom: '1rem',
+  color: baseTheme.color.accent,
 });
 
 export const UpgradeButton = style({
-  fontSize: '1rem',
-  padding: '10px 20px',
+  fontSize: baseTheme.fontSize.button,
+  lineHeight: baseTheme.lineHeight.button,
+  padding: '12px 20px',
   borderRadius: '2px',
-  border: '1px solid #333',
+  border: `1px solid ${baseTheme.color.accent}`,
   cursor: 'pointer',
   backgroundColor: 'transparent',
   fontWeight: 'bold',
   transition: 'all 0.3s ease',
   selectors: {
     '&:hover': {
-      backgroundColor: '#333',
+      backgroundColor: baseTheme.color.accent,
       color: '#fff',
     },
   },
@@ -109,11 +118,13 @@ export const MembershipListItem = style({
   marginBottom: '24px',
   padding: '16px',
   borderRadius: '4px',
-  border: '1px solid #e1e1e1',
+  border: `1px solid ${baseTheme.color.border}`,
+  fontSize: baseTheme.fontSize.text,
+  lineHeight: baseTheme.lineHeight.text,
   transition: 'background-color 0.2s ease-in-out',
   selectors: {
     '&:hover': {
-      backgroundColor: '#f7f7f7',
+      backgroundColor: baseTheme.color.hover,
     },
   },
 });
