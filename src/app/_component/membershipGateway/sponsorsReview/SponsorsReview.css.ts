@@ -3,41 +3,37 @@ import { style } from '@vanilla-extract/css';
 import { baseTheme } from '@/styles/themes.css.ts';
 
 export const SponsorsReviewSection = style({
-  display: 'flex',
-  flexDirection: 'row',
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
   padding: '20px',
   backgroundColor: '#f8f8f8',
   alignItems: 'center',
   width: '100%',
+  gap: '20px',
 });
 
 export const SponsorsReviewHeading = style({
+  gridColumn: '1',
   display: 'block',
-  flex: '1',
   textAlign: 'center',
 });
 
-// TODO: 슬라이드 스타일 수정
 export const SponsorsReviewContainer = style({
+  gridColumn: '2',
   display: 'flex',
   flexDirection: 'row',
-  flex: '1',
-  justifyContent: 'flex-end',
-  width: 'auto',
-  overflowX: 'hidden',
+  overflowX: 'hidden', // 슬라이드가 넘쳐도 스크롤바를 표시하지 않음
+  width: '100%',
 });
 
 export const SponsorsReviewCard = style({
-  display: 'flex',
-  flexDirection: 'column',
-  flex: '1',
-  width: '100%',
+  flex: 'none',
   backgroundColor: 'white',
   boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
   padding: '15px',
-  margin: '10px',
+  margin: '0 10px',
   borderRadius: '4px',
-  maxWidth: '280px',
+  width: 'calc(50% - 20px)',
 });
 
 export const SponsorsReviewAuthor = style({
