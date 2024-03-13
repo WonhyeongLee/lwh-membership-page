@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { baseTheme } from '@/styles/themes.css.ts';
 
 export const SponsorsReviewSection = style({
+  position: 'relative',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   padding: '20px',
@@ -18,14 +19,6 @@ export const SponsorsReviewHeading = style({
   textAlign: 'center',
 });
 
-export const SponsorsReviewContainer = style({
-  gridColumn: '2',
-  display: 'flex',
-  flexDirection: 'row',
-  overflowX: 'hidden', // 슬라이드가 넘쳐도 스크롤바를 표시하지 않음
-  width: '100%',
-});
-
 export const SponsorsReviewCard = style({
   flex: 'none',
   backgroundColor: 'white',
@@ -33,7 +26,7 @@ export const SponsorsReviewCard = style({
   padding: '15px',
   margin: '0 10px',
   borderRadius: '4px',
-  width: 'calc(50% - 20px)',
+  width: 'calc(50% - 30px)',
 });
 
 export const SponsorsReviewAuthor = style({
