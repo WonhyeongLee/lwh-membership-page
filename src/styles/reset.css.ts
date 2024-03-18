@@ -44,6 +44,10 @@ globalStyle('h1, h2, h3, h4', {
   textWrap: 'balance',
 });
 
+globalStyle('a', {
+  textDecoration: 'none',
+});
+
 globalStyle('a:not([class])', {
   textDecorationSkipInk: 'auto',
   color: 'currentColor',
