@@ -11,11 +11,10 @@ export const introContainer = style({
 });
 
 export const introImageContainer = style({
-  width: '100%',
+  width: 'auto',
   display: 'flex',
   justifyContent: 'center',
   margin: 'auto',
-  flex: 1,
   filter: `
   drop-shadow(5px 0px 0px rgba(240, 46, 170, 0.4))
   drop-shadow(10px 0px 0px rgba(240, 46, 170, 0.3))
@@ -37,7 +36,6 @@ export const introTextContainer = style({
   flexDirection: 'column',
   width: '50%',
   height: '100vh',
-  textAlign: 'center',
   marginLeft: '2rem',
   overflow: 'hidden',
 });
@@ -52,6 +50,7 @@ export const introTextBox = style({
   justifyContent: 'center',
   fontSize: '70px',
   lineHeight: '1.3',
+  minWidth: '395px',
 });
 
 export const firstIntroText = style({

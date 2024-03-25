@@ -9,7 +9,7 @@ import * as styles from './Introduction.css';
 
 const Introduction = () => {
   const introContainer = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLImageElement>(null);
+  const imageContainerRef = useRef<HTMLDivElement>(null);
   const textSection = useRef<HTMLDivElement>(null);
   const firstTextSection = useRef<HTMLDivElement>(null);
   const secTextSection = useRef<HTMLDivElement>(null);
@@ -21,7 +21,15 @@ const Introduction = () => {
         preventDefault: true,
       });
 
-      gsap.from(imageRef.current!, {
+      gsap.set(`.${styles.introImageContainer} > :nth-child(2)`, {
+        visibility: 'hidden',
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+      });
+
+      gsap.from(`.${styles.introImageContainer} > :first-child`, {
         xPercent: -50,
         opacity: 0,
         duration: 1,
@@ -77,18 +85,39 @@ const Introduction = () => {
         stagger: 0.2,
         ease: 'power2.out',
       });
+      introductionTl.to(
+        `.${styles.introImageContainer} > :first-child`,
+        {
+          autoAlpha: 0,
+          duration: 1.5,
+        },
+        0,
+      );
+      introductionTl.fromTo(
+        `.${styles.introImageContainer} > :nth-child(2)`,
+        { visibility: 'visible', autoAlpha: 0 },
+        { autoAlpha: 1, duration: 1 },
+        '<',
+      );
     },
-    { scope: textSection },
+    { scope: introContainer },
   );
 
   return (
     <section ref={introContainer} className={styles.introContainer} id="intro">
-      <div className={styles.introImageContainer} ref={imageRef}>
+      <div className={styles.introImageContainer} ref={imageContainerRef}>
         <Image
           className={styles.profileImage}
           width={600}
           height={750}
-          src={`/images/profile.png`}
+          src={`/images/profile.jpg`}
+          alt="프로필"
+        />
+        <Image
+          className={styles.profileImage}
+          width={600}
+          height={750}
+          src={`/images/profile2.jpg`}
           alt="프로필"
         />
       </div>
