@@ -1,17 +1,15 @@
 import { style } from '@vanilla-extract/css';
 
 export const introContainer = style({
-  position: 'relative',
-  width: '100%',
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
   height: '100vh',
-  display: 'flex',
-  flexDirection: 'row',
   alignItems: 'center',
   justifyContent: 'center',
 });
 
 export const introImageContainer = style({
-  width: 'auto',
+  width: '100%',
   display: 'flex',
   justifyContent: 'center',
   margin: 'auto',
@@ -24,20 +22,20 @@ export const introImageContainer = style({
 `,
 });
 
-export const profileImage = style({
-  minWidth: '150px',
-  minHeight: '150px',
-  clipPath: 'polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%)',
-});
-
 export const introTextContainer = style({
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
-  width: '50%',
+  width: '100%',
   height: '100vh',
   marginLeft: '2rem',
   overflow: 'hidden',
+});
+
+export const profileImage = style({
+  minWidth: '150px',
+  minHeight: '150px',
+  clipPath: 'polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%)',
 });
 
 export const introTextBox = style({
