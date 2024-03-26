@@ -15,11 +15,13 @@ const MembershipLevelItem = ({
 }: MembershipLevelItemProps) => {
   return (
     <li className={styles.MembershipLevelItem}>
-      <strong>{title}</strong>
+      <h3 className={styles.MembershipLevelItemText}>{title}</h3>
       <div className={styles.MembershipImageWrapper}>
         <Image src={imageUrl} alt={`${title} Image`} width={300} height={300} />
       </div>
-      <div>{price.toLocaleString()}원</div>
+      <div className={styles.MembershipLevelItemText}>
+        {price.toLocaleString()}원
+      </div>
     </li>
   );
 };

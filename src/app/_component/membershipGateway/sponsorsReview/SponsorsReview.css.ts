@@ -27,6 +27,8 @@ export const SponsorsReviewCard = style({
   margin: '0 10px',
   borderRadius: '4px',
   width: 'calc(50% - 30px)',
+  maxWidth: '275px',
+  minWidth: '215px',
 });
 
 export const SponsorsReviewAuthor = style({

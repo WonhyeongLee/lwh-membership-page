@@ -30,7 +30,7 @@ export const Text = style({
 
 export const MembershipLevelList = style({
   width: '100%',
-  padding: '0',
+  padding: '10px 0',
   display: 'flex',
   justifyContent: 'center',
   gap: '20px',
@@ -48,7 +48,6 @@ export const MembershipLevelItem = style({
   fontWeight: 'bold',
   fontSize: baseTheme.fontSize.button,
   textAlign: 'center',
-  backgroundColor: baseTheme.color.contentBackground,
 });
 
 export const MembershipImageWrapper = style({
@@ -59,6 +58,11 @@ export const MembershipImageWrapper = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+});
+
+export const MembershipLevelItemText = style({
+  fontSize: '1.5vw',
+  color: 'black',
 });
 
 export const OverlayContainer = style({
