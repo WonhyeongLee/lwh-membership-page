@@ -1,8 +1,6 @@
 export const mediaQueries = {
-  mobileSmall: '(max-width: 320px)',
-  mobileMedium: '(min-width: 321px) and (max-width: 480px)',
-  mobileLarge: '(min-width: 481px) and (max-width: 768px)',
-  tablet: '(min-width: 769px) and (max-width: 1024px)',
-  laptop: '(min-width: 1025px) and (max-width: 1366px)',
-  desktopLarge: '(min-width: 1367px)',
+  mobile: '(max-width: 768px)', // 모바일: 768px 이하
+  tablet: '(min-width: 769px) and (max-width: 1024px)', // 태블릿: 769px ~ 1024px
+  laptop: '(min-width: 1025px) and (max-width: 1366px)', // 랩탑: 1025px ~ 1366px
+  desktop: '(min-width: 1367px)', // 데스크탑: 1367px 이상
 };
