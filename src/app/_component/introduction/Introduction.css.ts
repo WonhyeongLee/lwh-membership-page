@@ -5,16 +5,20 @@ import { mediaQueries } from '@/styles/mediaQueries.css.ts';
 export const introContainer = style({
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
-  width: '100%',
-  height: '100vh',
   alignItems: 'center',
   justifyContent: 'center',
+  '@media': {
+    [mediaQueries.mobile]: {
+      gridTemplateColumns: '1fr',
+      gridTemplateRows: '1fr 1fr',
+    },
+  },
 });
 
 export const introImageContainer = style({
   position: 'relative',
-  width: '70%',
-  height: '62.5vh', // 뷰포트 높이의 75%를 높이로 사용
+  width: '100%',
+  height: '62.5vh',
   maxWidth: '600px',
   maxHeight: '750px',
   margin: 'auto',
@@ -28,7 +32,8 @@ export const introImageContainer = style({
   '@media': {
     [mediaQueries.mobile]: {
       width: '30vh',
-      height: '42.5vh',
+      height: '46vh',
+      marginBottom: '-50px',
     },
   },
 });
@@ -38,9 +43,14 @@ export const introTextContainer = style({
   display: 'flex',
   flexDirection: 'column',
   width: '100%',
-  height: '100%',
+  height: '100vh',
   marginLeft: '2rem',
   overflow: 'hidden',
+  '@media': {
+    [mediaQueries.mobile]: {
+      height: '50vh',
+    },
+  },
 });
 
 export const profileImage = style({
@@ -48,6 +58,10 @@ export const profileImage = style({
   minHeight: '150px',
   clipPath: 'polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%)',
   '@media': {
+    [mediaQueries.mobile]: {
+      minWidth: '30vh',
+      minHeight: '42.5vh',
+    },
     [mediaQueries.tablet]: {
       minWidth: '100px',
       minHeight: '100px',
@@ -63,7 +77,7 @@ export const introTextBox = style({
   position: 'relative',
   flex: '0 0 auto',
   width: '100%',
-  height: '100vh',
+  height: '100%',
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',

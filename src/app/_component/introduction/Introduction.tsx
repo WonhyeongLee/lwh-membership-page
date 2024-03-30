@@ -7,6 +7,8 @@ import { useRef } from 'react';
 
 import * as styles from './Introduction.css';
 
+import { mediaQueries } from '@/styles/mediaQueries.css.ts';
+
 const Introduction = () => {
   const introContainer = useRef<HTMLDivElement>(null);
   const imageContainerRef = useRef<HTMLDivElement>(null);
@@ -19,6 +21,12 @@ const Introduction = () => {
         type: 'wheel,touch,scroll',
         preventDefault: true,
       });
+      gsap.from(`.${styles.introImageContainer} > :first-child`, {
+        xPercent: -50,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.In',
+      });
 
       gsap.set(`.${styles.introImageContainer} > :nth-child(2)`, {
         visibility: 'hidden',
@@ -26,13 +34,6 @@ const Introduction = () => {
         top: 0,
         left: 0,
         width: '100%',
-      });
-
-      gsap.from(`.${styles.introImageContainer} > :first-child`, {
-        xPercent: -50,
-        opacity: 0,
-        duration: 1,
-        ease: 'power2.In',
       });
 
       gsap.from(`.${styles.introText}`, {
@@ -54,8 +55,8 @@ const Introduction = () => {
     () => {
       const introductionTl = gsap.timeline({
         scrollTrigger: {
-          trigger: introContainer.current!,
-          start: 'top+=10 top',
+          trigger: introContainer.current,
+          start: 'top+=1 top',
           end: '+=2000',
           scrub: 1,
           pin: true,
@@ -76,10 +77,11 @@ const Introduction = () => {
       }
 
       if (secTextSection.current) {
+        const yOffset = window.innerWidth <= 768 ? '-40vh' : '-90vh';
         introductionTl.to(
           secTextSection.current.querySelectorAll('p'),
           {
-            y: '-90vh',
+            y: yOffset,
             opacity: 1,
             duration: 0.5,
             stagger: 0.3,
@@ -115,12 +117,14 @@ const Introduction = () => {
           src={`/images/profile.jpg`}
           alt="프로필"
           fill={true}
+          sizes={`${mediaQueries.mobile} 30vh, ${mediaQueries.tablet} 100vw, ${mediaQueries.desktop} 600px`}
         />
         <Image
           className={styles.profileImage}
           src={`/images/profile2.jpg`}
           alt="프로필"
           fill={true}
+          sizes={`${mediaQueries.mobile} 30vh, ${mediaQueries.tablet} 100vw, ${mediaQueries.desktop} 600px`}
         />
       </div>
       <div id="box" className={styles.introTextContainer}>
