@@ -1,9 +1,10 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import Image from 'next/image';
 import React from 'react';
 import { useRef } from 'react';
+
+import CommonBenefitItem from '@/app/_component/commonBenefits/CommonBenefitsItem.tsx';
 
 import * as styles from './CommonBenefits.css';
 
@@ -17,39 +18,43 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);
-  const commonBenefitsItemListRefs = useRef<
-    Array<React.RefObject<HTMLLIElement>>
-  >(commonBenefits.map(() => React.createRef<HTMLLIElement>()));
 
-  useGSAP(() => {
-    // CommonBenefits 영역
-    const commonBenefitsTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: commonBenefitsContainerRef.current,
-        start: 'top top',
-        end: 'bottom top-=200',
-        scrub: 1,
-        pin: true,
-        toggleActions: 'play reverse play reverse',
-      },
-    });
+  useGSAP(
+    () => {
+      // CommonBenefits 영역
+      const commonBenefitsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: commonBenefitsContainerRef.current,
+          start: 'top top',
+          end: 'bottom top-=200',
+          scrub: 1,
+          pin: true,
+          toggleActions: 'play reverse play reverse',
+        },
+      });
 
-    commonBenefitsTl.from(commonBenefitsHeadingRef.current, {
-      yPercent: -50,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.InOut',
-    });
+      commonBenefitsTl.from(commonBenefitsHeadingRef.current, {
+        yPercent: -50,
+        opacity: 0,
+        duration: 0.5,
+        ease: 'power2.InOut',
+      });
 
-    commonBenefitsItemListRefs.current.forEach(ref => {
       commonBenefitsTl.fromTo(
-        ref.current,
+        `.${styles.CommonBenefitItem}`,
         { xPercent: -50, opacity: 0 },
-        { xPercent: 0, opacity: 1, duration: 0.4, ease: 'power2.out' },
+        {
+          xPercent: 0,
+          opacity: 1,
+          duration: 0.4,
+          stagger: 0.4,
+          ease: 'power2.out',
+        },
         '<0.5',
       );
-    });
-  });
+    },
+    { scope: commonBenefitsContainerRef },
+  );
 
   return (
     <section
@@ -67,26 +72,12 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
         className={styles.CommonBenefitsItemWrapper}
         ref={commonBenefitsItemWrapperRef}
       >
-        {commonBenefits.map((benefit, index) => (
-          <li
+        {commonBenefits.map(benefit => (
+          <CommonBenefitItem
             key={benefit.id}
+            benefit={benefit}
             className={styles.CommonBenefitItem}
-            ref={commonBenefitsItemListRefs.current[index]}
-          >
-            <Image
-              className={styles.CommonBenefitImage}
-              width={338}
-              height={259}
-              src={benefit.image || 'https://placehold.co/338x259.png'}
-              alt={`${benefit.title} 이미지`}
-            />
-            <div className={styles.CommonBenefitContent}>
-              <p className={styles.CommonBenefitTitle}>{benefit.title}</p>
-              <p className={styles.CommonBenefitDescription}>
-                {benefit.benefit}
-              </p>
-            </div>
-          </li>
+          />
         ))}
       </ul>
     </section>
