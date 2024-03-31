@@ -17,7 +17,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);
-  const commonBenefitsItemListrefs = useRef<
+  const commonBenefitsItemListRefs = useRef<
     Array<React.RefObject<HTMLLIElement>>
   >(commonBenefits.map(() => React.createRef<HTMLLIElement>()));
 
@@ -41,7 +41,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
       ease: 'power2.InOut',
     });
 
-    commonBenefitsItemListrefs.current.forEach(ref => {
+    commonBenefitsItemListRefs.current.forEach(ref => {
       commonBenefitsTl.fromTo(
         ref.current,
         { xPercent: -50, opacity: 0 },
@@ -71,7 +71,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
           <li
             key={benefit.id}
             className={styles.CommonBenefitItem}
-            ref={commonBenefitsItemListrefs.current[index]}
+            ref={commonBenefitsItemListRefs.current[index]}
           >
             <Image
               className={styles.CommonBenefitImage}
