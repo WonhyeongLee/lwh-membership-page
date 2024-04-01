@@ -48,7 +48,7 @@ export const CommonBenefitsItemWrapper = style({
   '@media': {
     [mediaQueries.mobile]: {
       flexDirection: 'column',
-      width: '70%',
+      width: '90%',
       justifyContent: 'flex-start',
       overflow: 'hidden',
     },

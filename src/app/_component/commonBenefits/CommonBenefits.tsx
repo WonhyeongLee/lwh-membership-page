@@ -24,7 +24,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
 
   useGSAP(
     () => {
-      // CommonBenefits 영역
+      const mobileAnimation = gsap.matchMedia();
       const commonBenefitsTl = gsap.timeline({
         scrollTrigger: {
           trigger: commonBenefitsContainerRef.current,
@@ -55,6 +55,20 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
         },
         '<0.5',
       );
+
+      // 모바일 환경에서만 실행되는 애니메이션
+      mobileAnimation.add('(max-width: 767px)', () => {
+        commonBenefitsTl.from(
+          commonBenefitsItemWrapperRef.current!,
+          {
+            opacity: 0,
+            yPercent: -30,
+            ease: 'power2.InOut',
+            duration: 0.5,
+          },
+          '<0.5',
+        );
+      });
     },
     { scope: commonBenefitsContainerRef },
   );
@@ -72,15 +86,20 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
         </p>
       </div>
       {isMobile ? (
-        <Carousel itemsToShow={1}>
-          {commonBenefits.map(benefit => (
-            <CommonBenefitItem
-              key={benefit.id}
-              benefit={benefit}
-              className={styles.CommonBenefitItem}
-            />
-          ))}
-        </Carousel>
+        <ul
+          className={styles.CommonBenefitsItemWrapper}
+          ref={commonBenefitsItemWrapperRef}
+        >
+          <Carousel itemsToShow={1}>
+            {commonBenefits.map(benefit => (
+              <CommonBenefitItem
+                key={benefit.id}
+                benefit={benefit}
+                className={styles.CommonBenefitItem}
+              />
+            ))}
+          </Carousel>
+        </ul>
       ) : (
         <ul
           className={styles.CommonBenefitsItemWrapper}
