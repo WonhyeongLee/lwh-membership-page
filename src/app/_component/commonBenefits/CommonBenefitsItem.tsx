@@ -1,4 +1,3 @@
-// CommonBenefitItem.tsx
 import Image from 'next/image';
 
 import * as styles from './CommonBenefits.css';
