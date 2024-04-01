@@ -37,11 +37,12 @@ export const baseTheme = createGlobalTheme(':root', {
     accent: '#007BFF',
   },
   fontSize: {
-    text: '1rem',
-    title: '2rem',
-    subtitle: '1.5rem',
-    button: '0.9375rem',
-    smallText: '0.8125rem',
+    base: '1rem', // 16px 기본
+    heading: '2.5rem', // 40px
+    large: '1.5rem', // 24px
+    medium: '1.25rem', // 20px
+    small: '0.875rem', // 14px
+    xsmall: '0.75rem', // 12px
   },
   lineHeight: {
     text: '1.5',
