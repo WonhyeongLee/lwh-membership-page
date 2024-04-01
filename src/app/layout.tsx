@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 
 import localFont from 'next/font/local';
 
@@ -24,6 +25,13 @@ const pretendBold = localFont({
 export const metadata: Metadata = {
   title: '이원형 멤버쉽 사이트',
   description: '이원형에 대한 개인적인 후원을 통해 멤버쉽 혜택을 받아보세요.',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
