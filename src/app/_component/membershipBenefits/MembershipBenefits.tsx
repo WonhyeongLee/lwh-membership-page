@@ -1,8 +1,10 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import Image from 'next/image';
 import { useRef, useState } from 'react';
+
+import BenefitsList from '@/app/_component/membershipBenefits/BenefitsList.tsx';
+import SelectedBenefitsDetail from '@/app/_component/membershipBenefits/SelectedBenefitsDetail.tsx';
 
 import * as styles from './MembershipBenefits.css';
 
@@ -15,29 +17,14 @@ interface MembershipBenefitProps {
 const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
   membershipBenefits,
 }) => {
-  const benefitsListRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsContainerRef = useRef<HTMLDivElement>(null);
-  const membershipBenefitsDataRef = useRef<HTMLUListElement>(null);
-  const membershipHeadingRef = useRef<HTMLDivElement>(null);
-  const membershipBenefitsListRef = useRef<HTMLUListElement>(null);
   const isAnimatingRef = useRef(false);
-
   const defaultTitle = membershipBenefits[0].title;
   const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
 
-  const selectedBenefits = membershipBenefits.find(
-    benefit => benefit.title === selectedTitle,
-  )?.benefits;
-
-  const handleItemClick = (title: string): void => {
+  const handleSelectTitle = (title: string): void => {
     if (!isAnimatingRef.current) {
       setSelectedTitle(title);
-    }
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent, title: string): void => {
-    if (e.key === 'Enter') {
-      handleItemClick(title);
     }
   };
 
@@ -59,104 +46,36 @@ const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
       ease: 'power2.InOut',
     });
 
-    membershipBenefitsTl.from(membershipHeadingRef.current, {
-      yPercent: -50,
-      opacity: 0,
-      duration: 0.5,
-      ease: 'power2.InOut',
-    });
-
-    membershipBenefitsTl.from(membershipBenefitsListRef.current, {
+    membershipBenefitsTl.from(`.${styles.BenefitsListWrapper}`, {
       xPercent: 50,
       opacity: 0,
       duration: 0.5,
       ease: 'power2.InOut',
     });
 
-    membershipBenefitsTl.from(benefitsListRef.current, {
+    membershipBenefitsTl.from(`.${styles.SelectedBenefitsDetailWrapper}`, {
       xPercent: -50,
       opacity: 0,
       duration: 0.5,
       ease: 'power2.InOut',
     });
   });
-  // benefitsList 전환 애니메이션
-  useGSAP(
-    () => {
-      if (selectedBenefits && membershipBenefitsContainerRef.current) {
-        isAnimatingRef.current = true;
-        gsap.from(`.${styles.BenefitsListItem}`, {
-          opacity: 0,
-          x: -20,
-          stagger: 0.1,
-          duration: 0.5,
-          onComplete: () => {
-            isAnimatingRef.current = false;
-            gsap.killTweensOf(`.${styles.BenefitsListItem}`);
-          },
-        });
-      }
-    },
-    { dependencies: [selectedTitle], scope: membershipBenefitsDataRef },
-  );
 
   return (
     <section
       ref={membershipBenefitsContainerRef}
       className={styles.MembershipBenefitsContainer}
     >
-      <div ref={benefitsListRef} className={styles.BenefitsListWrapper}>
-        <div className={styles.ImageWrapper}>
-          <Image
-            className={styles.ImageStyle}
-            src={'https://placehold.co/400.png'}
-            width={400}
-            height={400}
-            alt="멤버쉽 혜택 이미지"
-          />
-        </div>
-        <ul ref={membershipBenefitsDataRef} className={styles.BenefitsList}>
-          {selectedBenefits ? (
-            selectedBenefits.map(benefit => (
-              <li key={benefit.id} className={styles.BenefitsListItem}>
-                {benefit.benefit}
-              </li>
-            ))
-          ) : (
-            <p>혜택을 선택하세요.</p>
-          )}
-        </ul>
-      </div>
-      <div className={styles.MembershipListWrapper}>
-        <div
-          ref={membershipHeadingRef}
-          className={styles.MembershipHeadingWrapper}
-        >
-          <h2 className={styles.MembershipHeading}>등급별 혜택</h2>
-          <button className={styles.UpgradeButton}>Upgrade Now</button>
-        </div>
-        <ul ref={membershipBenefitsListRef}>
-          {membershipBenefits.map((benefit, index) => (
-            <li key={index} className={styles.MembershipListItem}>
-              <Image
-                src={'https://placehold.co/100.png'}
-                width={100}
-                height={100}
-                alt={benefit.title}
-                className={styles.MembershipListImage}
-              />
-              <button
-                className={styles.MembershipListButton}
-                onClick={() => handleItemClick(benefit.title)}
-                onKeyDown={e => handleKeyDown(e, benefit.title)}
-              >
-                <strong>{benefit.title}</strong>
-                <p>{benefit.description}</p>
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <SelectedBenefitsDetail
+        membershipBenefits={membershipBenefits}
+        selectedTitle={selectedTitle}
+        className={styles.SelectedBenefitsDetailWrapper}
+      />
+      <BenefitsList
+        membershipBenefits={membershipBenefits}
+        handleSelectTitle={handleSelectTitle}
+        className={styles.BenefitsListWrapper}
+      />
     </section>
   );
 };
