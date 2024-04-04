@@ -12,11 +12,19 @@ const GSAPWrapper = ({ children }: { children: React.ReactNode }) => {
     ScrollTrigger.config({
       autoRefreshEvents: 'visibilitychange,DOMContentLoaded,load',
     });
-
     ScrollTrigger.clearScrollMemory('manual');
     window.history.scrollRestoration = 'manual';
 
     window.scrollTo(0, 0);
+
+    const setVHVariable = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    };
+
+    setVHVariable();
+    window.addEventListener('resize', setVHVariable);
+    return () => window.removeEventListener('resize', setVHVariable);
   }, []);
 
   return <>{children}</>;
