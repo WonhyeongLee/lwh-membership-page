@@ -3,45 +3,50 @@ import gsap from 'gsap';
 import Image from 'next/image';
 import { useRef } from 'react';
 
+import { useMembershipBenefitsStore } from '@/store/membershipBenefitsStore.ts';
+
 import * as styles from './SelectedBenefitsDetail.css.ts';
 
-import type { MembershipBenefit } from '@/model/membershipInformation.ts';
-
 interface SelectedBenefitsDetailProps {
-  selectedTitle: string;
-  membershipBenefits: MembershipBenefit[];
   className?: string;
 }
 
 const SelectedBenefitsDetail: React.FC<SelectedBenefitsDetailProps> = ({
-  membershipBenefits,
-  selectedTitle,
   className,
 }) => {
+  const membershipBenefits = useMembershipBenefitsStore(
+    state => state.membershipBenefits,
+  );
+  const selectedTitle = useMembershipBenefitsStore(
+    state => state.selectedTitle,
+  );
+  const toggleAnimation = useMembershipBenefitsStore(
+    state => state.toggleAnimation,
+  );
   const selectedBenefits = membershipBenefits.find(
     benefit => benefit.title === selectedTitle,
   )?.benefits;
   const benefitsListRef = useRef<HTMLDivElement>(null);
   const membershipBenefitsDataRef = useRef<HTMLUListElement>(null);
-  const isAnimatingRef = useRef(false);
 
   useGSAP(
     () => {
       if (selectedBenefits) {
-        isAnimatingRef.current = true;
+        toggleAnimation();
         gsap.from(`.${styles.BenefitsListItem}`, {
           opacity: 0,
           x: -20,
           stagger: 0.1,
           duration: 0.5,
           onComplete: () => {
-            isAnimatingRef.current = false;
+            toggleAnimation();
             gsap.killTweensOf(`.${styles.BenefitsListItem}`);
           },
         });
       }
     },
-    { dependencies: [selectedTitle], scope: membershipBenefitsDataRef },
+
+    { dependencies: [selectedBenefits], scope: membershipBenefitsDataRef },
   );
   return (
     <div ref={benefitsListRef} className={className}>

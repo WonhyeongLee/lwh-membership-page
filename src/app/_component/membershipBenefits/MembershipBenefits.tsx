@@ -1,32 +1,20 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 import BenefitsList from '@/app/_component/membershipBenefits/BenefitsList.tsx';
 import SelectedBenefitsDetail from '@/app/_component/membershipBenefits/SelectedBenefitsDetail.tsx';
+// import { useMembershipBenefitsStore } from '@/store/index.ts';
 
 import * as styles from './MembershipBenefits.css';
 
-import type { MembershipBenefit } from '@/model/membershipInformation.ts';
-
-interface MembershipBenefitProps {
-  membershipBenefits: MembershipBenefit[];
-}
-
-const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
-  membershipBenefits,
-}) => {
+const MembershipBenefits = () => {
+  // const { selectedTitle, setSelectedTitle, membershipBenefits } =
+  //   useMembershipBenefitsStore();
   const membershipBenefitsContainerRef = useRef<HTMLDivElement>(null);
-  const isAnimatingRef = useRef(false);
-  const defaultTitle = membershipBenefits[0].title;
-  const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
-
-  const handleSelectTitle = (title: string): void => {
-    if (!isAnimatingRef.current) {
-      setSelectedTitle(title);
-    }
-  };
+  // const defaultTitle = membershipBenefits[0].title;
+  // const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
 
   useGSAP(() => {
     const membershipBenefitsTl = gsap.timeline({
@@ -61,21 +49,21 @@ const MembershipBenefits: React.FC<MembershipBenefitProps> = ({
     });
   });
 
+  // useEffect(() => {
+  //   if (membershipBenefits.length > 0 && !selectedTitle) {
+  //     setSelectedTitle(membershipBenefits[0].title);
+  //   }
+  // }, [membershipBenefits, selectedTitle, setSelectedTitle]);
+
   return (
     <section
       ref={membershipBenefitsContainerRef}
       className={styles.MembershipBenefitsContainer}
     >
       <SelectedBenefitsDetail
-        membershipBenefits={membershipBenefits}
-        selectedTitle={selectedTitle}
         className={styles.SelectedBenefitsDetailWrapper}
       />
-      <BenefitsList
-        membershipBenefits={membershipBenefits}
-        handleSelectTitle={handleSelectTitle}
-        className={styles.BenefitsListWrapper}
-      />
+      <BenefitsList className={styles.BenefitsListWrapper} />
     </section>
   );
 };

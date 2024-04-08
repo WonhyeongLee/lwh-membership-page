@@ -1,27 +1,31 @@
 import Image from 'next/image';
 import { useRef } from 'react';
 
+import { useMembershipBenefitsStore } from '@/store/membershipBenefitsStore.ts';
+
 import * as styles from './BenefitsList.css';
 
-import type { MembershipBenefit } from '@/model/membershipInformation.ts';
-
 interface BenefitsListProps {
-  membershipBenefits: MembershipBenefit[];
-  handleSelectTitle: (title: string) => void;
   className?: string;
 }
 
-const BenefitsList: React.FC<BenefitsListProps> = ({
-  membershipBenefits,
-  handleSelectTitle,
-  className,
-}) => {
+const BenefitsList: React.FC<BenefitsListProps> = ({ className }) => {
+  const setSelectedTitle = useMembershipBenefitsStore(
+    state => state.setSelectedTitle,
+  );
+  const membershipBenefits = useMembershipBenefitsStore(
+    state => state.membershipBenefits,
+  );
   const membershipHeadingRef = useRef<HTMLHeadingElement>(null);
   const membershipBenefitsListRef = useRef<HTMLUListElement>(null);
 
+  const handleItemClick = (title: string): void => {
+    setSelectedTitle(title);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent, title: string): void => {
     if (e.key === 'Enter') {
-      handleSelectTitle(title);
+      setSelectedTitle(title);
     }
   };
 
@@ -46,7 +50,7 @@ const BenefitsList: React.FC<BenefitsListProps> = ({
             />
             <button
               className={styles.MembershipListButton}
-              onClick={() => handleSelectTitle(benefit.title)}
+              onClick={() => handleItemClick(benefit.title)}
               onKeyDown={e => handleKeyDown(e, benefit.title)}
             >
               <strong>{benefit.title}</strong>
