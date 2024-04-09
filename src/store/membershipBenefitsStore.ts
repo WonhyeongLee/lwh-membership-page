@@ -18,8 +18,15 @@ export const useMembershipBenefitsStore = create<MembershipBenefitsState>()(
       membershipBenefits: [],
       selectedTitle: '',
       isAnimating: false,
-      setMembershipBenefits: membershipBenefits =>
-        set(() => ({ membershipBenefits })),
+      setMembershipBenefits: (membershipBenefits: MembershipBenefit[]) =>
+        set(state => {
+          const defaultTitle =
+            membershipBenefits.length > 0 ? membershipBenefits[0].title : '';
+          return {
+            membershipBenefits,
+            selectedTitle: defaultTitle || state.selectedTitle,
+          };
+        }),
       setSelectedTitle: title =>
         set(state => {
           if (!state.isAnimating) {
