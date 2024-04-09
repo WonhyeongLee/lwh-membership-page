@@ -5,16 +5,11 @@ import { useRef } from 'react';
 
 import BenefitsList from '@/app/_component/membershipBenefits/BenefitsList.tsx';
 import SelectedBenefitsDetail from '@/app/_component/membershipBenefits/SelectedBenefitsDetail.tsx';
-// import { useMembershipBenefitsStore } from '@/store/index.ts';
 
 import * as styles from './MembershipBenefits.css';
 
 const MembershipBenefits = () => {
-  // const { selectedTitle, setSelectedTitle, membershipBenefits } =
-  //   useMembershipBenefitsStore();
   const membershipBenefitsContainerRef = useRef<HTMLDivElement>(null);
-  // const defaultTitle = membershipBenefits[0].title;
-  // const [selectedTitle, setSelectedTitle] = useState(defaultTitle);
 
   useGSAP(() => {
     const membershipBenefitsTl = gsap.timeline({
@@ -48,12 +43,6 @@ const MembershipBenefits = () => {
       ease: 'power2.InOut',
     });
   });
-
-  // useEffect(() => {
-  //   if (membershipBenefits.length > 0 && !selectedTitle) {
-  //     setSelectedTitle(membershipBenefits[0].title);
-  //   }
-  // }, [membershipBenefits, selectedTitle, setSelectedTitle]);
 
   return (
     <section
