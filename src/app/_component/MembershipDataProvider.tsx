@@ -1,7 +1,5 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import {
   useCommonBenefitsStore,
   useMembershipBenefitsStore,
@@ -14,7 +12,6 @@ import type {
   PaymentOption,
   SponsorsReviews,
 } from '@/model/membershipInformation.ts';
-
 interface MembershipDataProviderProps {
   commonBenefits: CommonBenefit[];
   membershipBenefits: MembershipBenefit[];
@@ -22,14 +19,13 @@ interface MembershipDataProviderProps {
   sponsorsReviews: SponsorsReviews[];
   children: React.ReactNode;
 }
-
-export default function MembershipDataProvider({
+const MembershipDataProvider: React.FC<MembershipDataProviderProps> = ({
   commonBenefits,
   membershipBenefits,
   paymentOptions,
   sponsorsReviews,
   children,
-}: MembershipDataProviderProps) {
+}) => {
   const setCommonBenefits = useCommonBenefitsStore(
     state => state.setCommonBenefits,
   );
@@ -38,21 +34,12 @@ export default function MembershipDataProvider({
   );
   const { setPaymentOptions, setSponsorsReviews } = useMembershipGatewayStore();
 
-  useEffect(() => {
-    setCommonBenefits(commonBenefits);
-    setMembershipBenefits(membershipBenefits);
-    setPaymentOptions(paymentOptions);
-    setSponsorsReviews(sponsorsReviews);
-  }, [
-    commonBenefits,
-    membershipBenefits,
-    paymentOptions,
-    sponsorsReviews,
-    setCommonBenefits,
-    setMembershipBenefits,
-    setPaymentOptions,
-    setSponsorsReviews,
-  ]);
+  setCommonBenefits(commonBenefits);
+  setMembershipBenefits(membershipBenefits);
+  setPaymentOptions(paymentOptions);
+  setSponsorsReviews(sponsorsReviews);
 
   return children;
-}
+};
+
+export default MembershipDataProvider;

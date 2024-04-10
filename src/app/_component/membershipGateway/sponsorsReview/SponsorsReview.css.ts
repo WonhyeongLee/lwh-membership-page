@@ -38,7 +38,7 @@ export const SponsorsReviewAuthor = style({
   gap: '10px',
 });
 export const SponsorsReviewText = style({
-  fontSize: baseTheme.fontSize.text,
+  fontSize: baseTheme.fontSize.base,
   color: '#333',
   marginBottom: '10px',
   wordWrap: 'break-word',

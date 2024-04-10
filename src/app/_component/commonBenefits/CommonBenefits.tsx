@@ -1,25 +1,20 @@
 'use client';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
-import React from 'react';
 import { useRef } from 'react';
 
 import Carousel from '@/app/_component/common/carousel/Carousel.tsx';
 import CommonBenefitItem from '@/app/_component/commonBenefits/CommonBenefitsItem.tsx';
 import useMobileScreen from '@/hooks/useMobileScreen.ts';
+import { useCommonBenefitsStore } from '@/store/index.ts';
 
 import * as styles from './CommonBenefits.css';
 
-import type { CommonBenefit } from '@/model/membershipInformation.ts';
-
-interface CommonBenefitsProps {
-  commonBenefits: CommonBenefit[];
-}
-
-const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
+const CommonBenefits = () => {
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);
+  const commonBenefits = useCommonBenefitsStore(state => state.commonBenefits);
   const isMobile = useMobileScreen();
 
   useGSAP(
@@ -44,7 +39,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
       });
 
       commonBenefitsTl.fromTo(
-        `.${styles.CommonBenefitItem}`,
+        '[data-gsap="common-benefit-item"]',
         { xPercent: -50, opacity: 0 },
         {
           xPercent: 0,
@@ -96,6 +91,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
                 key={benefit.id}
                 benefit={benefit}
                 className={styles.CommonBenefitItem}
+                data-gsap="common-benefit-item"
               />
             ))}
           </Carousel>
@@ -110,6 +106,7 @@ const CommonBenefits: React.FC<CommonBenefitsProps> = ({ commonBenefits }) => {
               key={benefit.id}
               benefit={benefit}
               className={styles.CommonBenefitItem}
+              data-gsap="common-benefit-item"
             />
           ))}
         </ul>

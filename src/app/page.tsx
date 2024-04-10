@@ -21,12 +21,9 @@ const MainPage = async () => {
       sponsorsReviews={sponsorsReviews}
     >
       <Introduction />
-      <CommonBenefits commonBenefits={commonBenefits} />
+      <CommonBenefits />
       <MembershipBenefits />
-      <MembershipGateway
-        sponsorsReviews={sponsorsReviews}
-        paymentOptions={paymentOptions}
-      />
+      <MembershipGateway />
     </MembershipDataProvider>
   );
 };

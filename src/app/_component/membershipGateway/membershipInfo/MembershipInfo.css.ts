@@ -46,7 +46,7 @@ export const MembershipLevelItem = style({
   borderRadius: '4px',
   gap: '10px',
   fontWeight: 'bold',
-  fontSize: baseTheme.fontSize.button,
+  fontSize: baseTheme.fontSize.large,
   textAlign: 'center',
 });
 

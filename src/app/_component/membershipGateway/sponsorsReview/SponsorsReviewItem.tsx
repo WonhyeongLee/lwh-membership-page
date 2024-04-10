@@ -7,19 +7,16 @@ import * as styles from './SponsorsReview.css.ts';
 
 interface SponsorsReviewItemProps {
   review: {
+    id: string;
     name: string;
     rating: number;
     review: string;
   };
-  index: number;
 }
 
-const SponsorsReviewItem: React.FC<SponsorsReviewItemProps> = ({
-  review,
-  index,
-}) => {
+const SponsorsReviewItem: React.FC<SponsorsReviewItemProps> = ({ review }) => {
   return (
-    <div key={index} className={styles.SponsorsReviewCard}>
+    <div className={styles.SponsorsReviewCard}>
       <div className={styles.SponsorsReviewInfo}>
         <div className={styles.SponsorsReviewAuthor}>
           <Image

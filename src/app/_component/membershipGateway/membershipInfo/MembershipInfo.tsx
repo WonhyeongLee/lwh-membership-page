@@ -5,16 +5,15 @@ import { useRef } from 'react';
 
 import Button from '@/app/_component/common/button/Button.tsx';
 import MembershipLevelItem from '@/app/_component/membershipGateway/membershipInfo/MembershipLevelItem.tsx';
-import { PaymentOption } from '@/model/membershipInformation.ts';
+import { useMembershipGatewayStore } from '@/store/membershipGatewayStore.ts';
 
 import * as styles from './MembershipInfo.css.ts';
 
-interface MembershipInfoProps {
-  paymentOptions: PaymentOption[];
-}
-
-const MembershipInfo = ({ paymentOptions }: MembershipInfoProps) => {
+const MembershipInfo = () => {
   const membershipInfoContainerRef = useRef<HTMLDivElement>(null);
+  const paymentOptions = useMembershipGatewayStore(
+    state => state.paymentOptions,
+  );
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({ scope: overlayRef });
