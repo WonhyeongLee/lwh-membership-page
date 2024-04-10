@@ -3,16 +3,21 @@ import { devtools } from 'zustand/middleware';
 
 import type { MembershipBenefit } from '@/model/membershipInformation.ts';
 
-interface MembershipBenefitsState {
+type MembershipBenefitsState = {
   membershipBenefits: MembershipBenefit[];
   selectedTitle: string;
   isAnimating: boolean;
+};
+
+type MembershipBenefitsActions = {
   setMembershipBenefits: (membershipBenefits: MembershipBenefit[]) => void;
   setSelectedTitle: (title: string) => void;
   toggleAnimation: () => void;
-}
+};
 
-export const useMembershipBenefitsStore = create<MembershipBenefitsState>()(
+export const useMembershipBenefitsStore = create<
+  MembershipBenefitsState & MembershipBenefitsActions
+>()(
   devtools(
     set => ({
       membershipBenefits: [],

@@ -6,14 +6,19 @@ import type {
   SponsorsReviews,
 } from '@/model/membershipInformation.ts';
 
-interface MembershipGatewayState {
+type MembershipGatewayState = {
   paymentOptions: PaymentOption[];
   sponsorsReviews: SponsorsReviews[];
+};
+
+type MembershipGatewayActions = {
   setPaymentOptions: (paymentOptions: PaymentOption[]) => void;
   setSponsorsReviews: (sponsorsReviews: SponsorsReviews[]) => void;
-}
+};
 
-export const useMembershipGatewayStore = create<MembershipGatewayState>()(
+export const useMembershipGatewayStore = create<
+  MembershipGatewayState & MembershipGatewayActions
+>()(
   devtools(set => ({
     paymentOptions: [],
     sponsorsReviews: [],
