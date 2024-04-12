@@ -6,6 +6,7 @@ import localFont from 'next/font/local';
 import '@/styles/reset.css.ts';
 import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
 import { MSWComponent } from '@/app/_component/MSWComponent.tsx';
+import RQProvider from '@/app/_component/RQProvider.tsx';
 
 import * as styles from '@/app/RootLayout.css.ts';
 
@@ -46,7 +47,9 @@ export default function RootLayout({
       >
         <MSWComponent />
         <GSAPWrapper>
-          <main>{children}</main>
+          <RQProvider>
+            <main>{children}</main>
+          </RQProvider>
         </GSAPWrapper>
       </body>
     </html>
