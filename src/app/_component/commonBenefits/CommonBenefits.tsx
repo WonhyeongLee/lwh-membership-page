@@ -1,20 +1,28 @@
 'use client';
 import { useGSAP } from '@gsap/react';
+import { useQuery } from '@tanstack/react-query';
 import gsap from 'gsap';
 import { useRef } from 'react';
 
+// import { useMembershipInformationStore } from '@/app/_component/AppinitProvider.tsx';
 import Carousel from '@/app/_component/common/carousel/Carousel.tsx';
 import CommonBenefitItem from '@/app/_component/commonBenefits/CommonBenefitsItem.tsx';
+import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
 import useMobileScreen from '@/hooks/useMobileScreen.ts';
-import { useCommonBenefitsStore } from '@/store/index.ts';
+// import { useCommonBenefitsStore } from '@/store/index.ts';
+import { CommonBenefit } from '@/model/membershipInformation.ts';
 
 import * as styles from './CommonBenefits.css';
 
 const CommonBenefits = () => {
+  const { data } = useQuery({
+    queryKey: ['membership-information'],
+    queryFn: getMembershipInfo,
+  });
+  const commonBenefits = data?.commonBenefits;
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);
-  const commonBenefits = useCommonBenefitsStore(state => state.commonBenefits);
   const isMobile = useMobileScreen();
 
   useGSAP(
@@ -39,7 +47,7 @@ const CommonBenefits = () => {
       });
 
       commonBenefitsTl.fromTo(
-        '[data-gsap="common-benefit-item"]',
+        `.${styles.CommonBenefitItem}`,
         { xPercent: -50, opacity: 0 },
         {
           xPercent: 0,
@@ -86,12 +94,11 @@ const CommonBenefits = () => {
           ref={commonBenefitsItemWrapperRef}
         >
           <Carousel itemsToShow={1}>
-            {commonBenefits.map(benefit => (
+            {commonBenefits?.map((benefit: CommonBenefit) => (
               <CommonBenefitItem
                 key={benefit.id}
                 benefit={benefit}
                 className={styles.CommonBenefitItem}
-                data-gsap="common-benefit-item"
               />
             ))}
           </Carousel>
@@ -101,12 +108,11 @@ const CommonBenefits = () => {
           className={styles.CommonBenefitsItemWrapper}
           ref={commonBenefitsItemWrapperRef}
         >
-          {commonBenefits.map(benefit => (
+          {commonBenefits?.map((benefit: CommonBenefit) => (
             <CommonBenefitItem
               key={benefit.id}
               benefit={benefit}
               className={styles.CommonBenefitItem}
-              data-gsap="common-benefit-item"
             />
           ))}
         </ul>

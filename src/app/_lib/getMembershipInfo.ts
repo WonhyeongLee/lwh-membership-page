@@ -7,6 +7,9 @@ export async function getMembershipInfo() {
   const response = await fetch(`${baseUrl}/api/membership-information`, {
     credentials: 'include',
     cache: 'no-store',
+    next: {
+      tags: ['membership-information'],
+    },
   });
   if (!response.ok) {
     throw new Error('Failed to fetch data');
