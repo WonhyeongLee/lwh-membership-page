@@ -1,19 +1,19 @@
+import { MembershipInformation } from '@/model/membershipInformation.ts';
+
 const baseUrl =
   process.env.NEXT_PUBLIC_API_MOCK_ENABLED === 'enabled'
-    ? process.env.NEXT_PUBLIC_MOCK_URL // Mock 서버 URL
+    ? process.env.NEXT_PUBLIC_MOCK_URL
     : process.env.NEXT_PROD_URL;
 
-export async function getMembershipInfo() {
-  const response = await fetch(`${baseUrl}/api/membership-information`, {
-    credentials: 'include',
-    cache: 'no-store',
+export async function getMembershipInfo(): Promise<MembershipInformation> {
+  const response = await fetch(`${baseUrl}/api/memberships`, {
     next: {
-      tags: ['membership-information'],
+      tags: ['memberships'],
     },
   });
   if (!response.ok) {
     throw new Error('Failed to fetch data');
   }
-
-  return response.json();
+  const data: MembershipInformation = await response.json();
+  return data;
 }
