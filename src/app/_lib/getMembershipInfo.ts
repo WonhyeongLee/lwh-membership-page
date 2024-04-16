@@ -1,4 +1,4 @@
-import { MembershipInformation } from '@/model/membershipInformation.ts';
+import type { MembershipInformation } from '@/assets/membershipInformation';
 
 const baseUrl =
   process.env.NEXT_PUBLIC_API_MOCK_ENABLED === 'enabled'
