@@ -1,6 +1,8 @@
+import { useQuery } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useRef } from 'react';
 
+import { getMembershipBenefits } from '@/app/_lib/getMembershipBenefits.ts';
 import { useMembershipBenefitsStore } from '@/store/membershipBenefitsStore.ts';
 
 import * as styles from './BenefitsList.css';
@@ -10,11 +12,12 @@ interface BenefitsListProps {
 }
 
 const BenefitsList: React.FC<BenefitsListProps> = ({ className }) => {
+  const { data } = useQuery({
+    queryKey: ['membership-benefits'],
+    queryFn: () => getMembershipBenefits(),
+  });
   const setSelectedTitle = useMembershipBenefitsStore(
     state => state.setSelectedTitle,
-  );
-  const membershipBenefits = useMembershipBenefitsStore(
-    state => state.membershipBenefits,
   );
   const membershipHeadingRef = useRef<HTMLHeadingElement>(null);
   const membershipBenefitsListRef = useRef<HTMLUListElement>(null);
@@ -39,7 +42,7 @@ const BenefitsList: React.FC<BenefitsListProps> = ({ className }) => {
         <button className={styles.UpgradeButton}>Upgrade Now</button>
       </div>
       <ul ref={membershipBenefitsListRef}>
-        {membershipBenefits.map((benefit, index) => (
+        {data?.map((benefit, index) => (
           <li key={index} className={styles.MembershipListItem}>
             <Image
               src={'https://placehold.co/100.png'}

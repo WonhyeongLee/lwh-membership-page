@@ -1,8 +1,10 @@
 import { useGSAP } from '@gsap/react';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import gsap from 'gsap';
 import Image from 'next/image';
 import { useRef } from 'react';
 
+import { getMembershipBenefits } from '@/app/_lib/getMembershipBenefits.ts';
 import { useMembershipBenefitsStore } from '@/store/membershipBenefitsStore.ts';
 
 import * as styles from './SelectedBenefitsDetail.css.ts';
@@ -14,24 +16,20 @@ interface SelectedBenefitsDetailProps {
 const SelectedBenefitsDetail: React.FC<SelectedBenefitsDetailProps> = ({
   className,
 }) => {
-  const membershipBenefits = useMembershipBenefitsStore(
-    state => state.membershipBenefits,
-  );
-  const selectedTitle = useMembershipBenefitsStore(
-    state => state.selectedTitle,
-  );
+  const title = useMembershipBenefitsStore(state => state.selectedTitle);
+  const { data, isLoading } = useQuery({
+    queryKey: ['membership-benefits', title],
+    queryFn: () => getMembershipBenefits(title),
+    placeholderData: keepPreviousData,
+  });
   const toggleAnimation = useMembershipBenefitsStore(
     state => state.toggleAnimation,
   );
-  const selectedBenefits = membershipBenefits.find(
-    benefit => benefit.title === selectedTitle,
-  )?.benefits;
   const benefitsListRef = useRef<HTMLDivElement>(null);
-  const membershipBenefitsDataRef = useRef<HTMLUListElement>(null);
 
   useGSAP(
     () => {
-      if (selectedBenefits) {
+      if (!isLoading && data && data.length > 0) {
         toggleAnimation();
         gsap.from(`.${styles.BenefitsListItem}`, {
           opacity: 0,
@@ -45,9 +43,9 @@ const SelectedBenefitsDetail: React.FC<SelectedBenefitsDetailProps> = ({
         });
       }
     },
-
-    { dependencies: [selectedBenefits], scope: membershipBenefitsDataRef },
+    { dependencies: [data], scope: benefitsListRef },
   );
+
   return (
     <div ref={benefitsListRef} className={className}>
       <div className={styles.ImageWrapper}>
@@ -59,13 +57,15 @@ const SelectedBenefitsDetail: React.FC<SelectedBenefitsDetailProps> = ({
           alt="멤버쉽 혜택 이미지"
         />
       </div>
-      <ul ref={membershipBenefitsDataRef} className={styles.BenefitsList}>
-        {selectedBenefits ? (
-          selectedBenefits.map(benefit => (
-            <li key={benefit.id} className={styles.BenefitsListItem}>
-              {benefit.benefit}
-            </li>
-          ))
+      <ul className={styles.BenefitsList}>
+        {data && data.length > 0 ? (
+          data.map(benefit =>
+            benefit.benefits.map(detail => (
+              <li key={detail.id} className={styles.BenefitsListItem}>
+                {detail.benefit}
+              </li>
+            )),
+          )
         ) : (
           <p>혜택을 선택하세요.</p>
         )}

@@ -1,19 +1,22 @@
 'use client';
 import { useGSAP } from '@gsap/react';
+import { useQuery } from '@tanstack/react-query';
 import gsap from 'gsap';
 import { useRef } from 'react';
 
 import Button from '@/app/_component/common/button/Button.tsx';
 import MembershipLevelItem from '@/app/_component/membershipGateway/membershipInfo/MembershipLevelItem.tsx';
-import { useMembershipGatewayStore } from '@/store/membershipGatewayStore.ts';
+import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
 
 import * as styles from './MembershipInfo.css.ts';
 
 const MembershipInfo = () => {
+  const { data } = useQuery({
+    queryKey: ['memberships'],
+    queryFn: getMembershipInfo,
+  });
+  const paymentOptions = data?.paymentOptions || [];
   const membershipInfoContainerRef = useRef<HTMLDivElement>(null);
-  const paymentOptions = useMembershipGatewayStore(
-    state => state.paymentOptions,
-  );
   const overlayRef = useRef<HTMLDivElement>(null);
 
   const { contextSafe } = useGSAP({ scope: overlayRef });

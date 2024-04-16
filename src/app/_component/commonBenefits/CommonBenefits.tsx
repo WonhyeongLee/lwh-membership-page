@@ -4,22 +4,20 @@ import { useQuery } from '@tanstack/react-query';
 import gsap from 'gsap';
 import { useRef } from 'react';
 
-// import { useMembershipInformationStore } from '@/app/_component/AppinitProvider.tsx';
 import Carousel from '@/app/_component/common/carousel/Carousel.tsx';
 import CommonBenefitItem from '@/app/_component/commonBenefits/CommonBenefitsItem.tsx';
 import { getMembershipInfo } from '@/app/_lib/getMembershipInfo.ts';
+import { CommonBenefit } from '@/assets/membershipInformation.ts';
 import useMobileScreen from '@/hooks/useMobileScreen.ts';
-// import { useCommonBenefitsStore } from '@/store/index.ts';
-import { CommonBenefit } from '@/model/membershipInformation.ts';
 
 import * as styles from './CommonBenefits.css';
 
 const CommonBenefits = () => {
   const { data } = useQuery({
-    queryKey: ['membership-information'],
+    queryKey: ['memberships'],
     queryFn: getMembershipInfo,
   });
-  const commonBenefits = data?.commonBenefits;
+  const commonBenefits = data?.commonBenefits || [];
   const commonBenefitsContainerRef = useRef<HTMLDivElement>(null);
   const commonBenefitsHeadingRef = useRef<HTMLHeadingElement>(null);
   const commonBenefitsItemWrapperRef = useRef<HTMLUListElement>(null);
@@ -94,13 +92,15 @@ const CommonBenefits = () => {
           ref={commonBenefitsItemWrapperRef}
         >
           <Carousel itemsToShow={1}>
-            {commonBenefits?.map((benefit: CommonBenefit) => (
-              <CommonBenefitItem
-                key={benefit.id}
-                benefit={benefit}
-                className={styles.CommonBenefitItem}
-              />
-            ))}
+            {
+              commonBenefits?.map((benefit: CommonBenefit) => (
+                <CommonBenefitItem
+                  key={benefit.id}
+                  benefit={benefit}
+                  className={styles.CommonBenefitItem}
+                />
+              )) as JSX.Element[]
+            }
           </Carousel>
         </ul>
       ) : (
