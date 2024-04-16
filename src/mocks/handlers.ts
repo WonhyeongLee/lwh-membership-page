@@ -1,8 +1,8 @@
 import { http, HttpResponse } from 'msw';
 
-import { membershipBenefits } from '@/model/membershipBenefits.ts';
-import { membershipInformation } from '@/model/membershipInformation.ts';
-import { sponsorsReviews } from '@/model/sponsorsReview.ts';
+import { membershipBenefits } from '@/assets/membershipBenefits.ts';
+import { membershipInformation } from '@/assets/membershipInformation.ts';
+import { sponsorsReviews } from '@/assets/sponsorsReviews.ts';
 
 export const handlers = [
   http.get('/api/memberships', () => {
