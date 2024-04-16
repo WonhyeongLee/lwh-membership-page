@@ -10,7 +10,7 @@ interface CarouselProps {
 
 const Carousel: FC<CarouselProps> = ({ children, itemsToShow }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const totalChildren = children.length;
+  const totalChildren = children?.length || 0;
 
   const goToPrev = () =>
     setCurrentIndex(prevIndex =>
@@ -22,9 +22,11 @@ const Carousel: FC<CarouselProps> = ({ children, itemsToShow }) => {
     );
 
   const activeItems = [];
-  for (let i = 0; i < itemsToShow; i++) {
-    const itemIndex = (currentIndex + i) % totalChildren;
-    activeItems.push(children[itemIndex]);
+  if (totalChildren > 0) {
+    for (let i = 0; i < itemsToShow; i++) {
+      const itemIndex = (currentIndex + i) % totalChildren;
+      activeItems.push(children[itemIndex]);
+    }
   }
 
   return (
