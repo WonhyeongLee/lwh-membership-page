@@ -1,13 +1,7 @@
 import { style } from '@vanilla-extract/css';
 
+import { mediaQueries } from '@/styles/mediaQueries.css.ts';
 import { baseTheme } from '@/styles/themes.css.ts';
-
-const responsiveFontSize = {
-  base: '3rem', // 기본 폰트 크기
-  medium: '2.5rem', // 중간 화면 크기
-  small: '2rem', // 작은 화면 크기
-  xsmall: '1.5rem', // 매우 작은 화면 크기
-};
 
 export const CommonBenefitsContainer = style({
   position: 'relative',
@@ -25,11 +19,24 @@ export const CommonBenefitsContainer = style({
 export const CommonBenefitsHeading = style({
   fontSize: '4rem',
   marginBottom: '1rem',
+  '@media': {
+    [mediaQueries.mobile]: {
+      fontSize: '2rem',
+    },
+    [mediaQueries.tablet]: {
+      fontSize: '3rem',
+    },
+  },
 });
 
 export const CommonBenefitsComment = style({
   fontSize: '2rem',
   marginBottom: '3rem',
+  '@media': {
+    [mediaQueries.mobile]: {
+      fontSize: '1rem',
+    },
+  },
 });
 
 export const CommonBenefitsItemWrapper = style({
@@ -39,9 +46,9 @@ export const CommonBenefitsItemWrapper = style({
   alignItems: 'center',
   marginBottom: '2rem',
   '@media': {
-    'screen and (max-width: 768px)': {
+    [mediaQueries.mobile]: {
       flexDirection: 'column',
-      width: '70%',
+      width: '90%',
       justifyContent: 'flex-start',
       overflow: 'hidden',
     },
@@ -56,7 +63,7 @@ export const CommonBenefitItem = style({
   alignItems: 'center',
   border: `1px solid ${baseTheme.color.border}`,
   '@media': {
-    'screen and (max-width: 768px)': {
+    [mediaQueries.mobile]: {
       width: '100%',
     },
   },
@@ -74,38 +81,40 @@ export const CommonBenefitContent = style({
   textAlign: 'left',
   alignSelf: 'flex-start',
   margin: '0.5rem 1rem 0.5rem 1rem',
+  fontSize: baseTheme.fontSize.base,
   '@media': {
-    'screen and (max-width: 768px)': {
-      fontSize: '1rem',
+    [mediaQueries.mobile]: {
+      fontSize: baseTheme.fontSize.xsmall,
     },
   },
 });
+
 export const CommonBenefitTitle = style({
-  fontSize: '1rem',
+  fontSize: baseTheme.fontSize.base,
 });
 
 export const CommonBenefitDescription = style({
-  fontSize: '1.25rem',
+  fontSize: baseTheme.fontSize.small,
 });
 
 export const CommonBenefitsList = style({
   width: '100%',
-  fontSize: responsiveFontSize.base,
+  fontSize: `${baseTheme.fontSize.base}`,
   fontWeight: 'bold',
   position: 'absolute',
   top: 0,
   left: 0,
   zIndex: 1,
+  color: baseTheme.color.accent,
   '@media': {
-    'screen and (max-width: 1200px)': {
-      fontSize: responsiveFontSize.medium,
+    [mediaQueries.mobile]: {
+      fontSize: `${baseTheme.fontSize.xsmall}`,
     },
-    'screen and (max-width: 768px)': {
-      fontSize: responsiveFontSize.small,
+    [mediaQueries.tablet]: {
+      fontSize: `${baseTheme.fontSize.small}`,
     },
-    'screen and (max-width: 480px)': {
-      fontSize: responsiveFontSize.xsmall,
+    [mediaQueries.laptop]: {
+      fontSize: `${baseTheme.fontSize.medium}`,
     },
   },
-  color: baseTheme.color.accent,
 });
