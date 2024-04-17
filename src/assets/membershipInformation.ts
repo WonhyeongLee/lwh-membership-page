@@ -21,19 +21,19 @@ export const membershipInformation: MembershipInformation = {
       id: '1',
       title: '혜택 1',
       benefit: '경조사비 + α',
-      image: '',
+      image: '/images/commonBenefits/family_event.png',
     },
     {
       id: '2',
       title: '혜택 2',
       benefit: '사이버 잡일 시키기',
-      image: '',
+      image: '/images/commonBenefits/cyber_errand.png',
     },
     {
       id: '3',
       title: '혜택 3',
       benefit: 'SNS 빠른 답장',
-      image: '',
+      image: '/images/commonBenefits/fast_sns_reply.png',
     },
   ],
   paymentOptions: [

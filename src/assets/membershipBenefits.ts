@@ -4,6 +4,7 @@ export interface MembershipBenefitDetail {
 }
 
 export interface MembershipBenefit {
+  image: string;
   title: string;
   description: string;
   benefits: MembershipBenefitDetail[];
@@ -11,6 +12,7 @@ export interface MembershipBenefit {
 
 export const membershipBenefits: MembershipBenefit[] = [
   {
+    image: '/images/membershipBenefits/lite_mini.png',
     title: '라이트 혜택',
     description: '맛보기 기능을 제공합니다',
     benefits: [
@@ -20,6 +22,7 @@ export const membershipBenefits: MembershipBenefit[] = [
     ],
   },
   {
+    image: '/images/membershipBenefits/normal_mini.png',
     title: '일반 혜택',
     description: '기본 가격으로 표준혜택을 제공합니다',
     benefits: [
@@ -31,6 +34,7 @@ export const membershipBenefits: MembershipBenefit[] = [
     ],
   },
   {
+    image: '/images/membershipBenefits/premium_mini.png',
     title: '프리미엄 혜택',
     description: '일반 혜택에 더해 여러 추가 기능을 제공합니다',
     benefits: [
