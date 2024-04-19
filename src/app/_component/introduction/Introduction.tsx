@@ -57,7 +57,7 @@ const Introduction = () => {
         scrollTrigger: {
           trigger: introContainer.current,
           start: 'top+=1 top',
-          end: '+=2000',
+          end: '+=1900',
           scrub: 1,
           pin: true,
           anticipatePin: 1,
@@ -78,31 +78,27 @@ const Introduction = () => {
 
       if (secTextSection.current) {
         const yOffset = window.innerWidth <= 768 ? '-40vh' : '-90vh';
-        introductionTl.to(
-          secTextSection.current.querySelectorAll('p'),
-          {
-            y: yOffset,
-            opacity: 1,
-            duration: 0.5,
-            stagger: 0.3,
-            ease: 'power2.out',
-          },
-          '-=0.25',
-        );
+        introductionTl.to(secTextSection.current.querySelectorAll('p'), {
+          y: yOffset,
+          opacity: 1,
+          duration: 0.5,
+          stagger: 0.2,
+          ease: 'power2.out',
+        });
       }
 
       introductionTl.to(
         `.${styles.introImageContainer} > :first-child`,
         {
           autoAlpha: 0,
-          duration: 1.5,
+          duration: 2,
         },
         0,
       );
       introductionTl.fromTo(
         `.${styles.introImageContainer} > :nth-child(2)`,
         { visibility: 'visible', autoAlpha: 0 },
-        { autoAlpha: 1, duration: 1 },
+        { autoAlpha: 1, duration: 1.5 },
         '<',
       );
     },
@@ -114,14 +110,14 @@ const Introduction = () => {
       <div className={styles.introImageContainer} ref={imageContainerRef}>
         <Image
           className={styles.profileImage}
-          src={`/images/profile.jpg`}
+          src={`/images/profile/profile1.png`}
           alt="프로필"
           fill={true}
           sizes={`${mediaQueries.mobile} 30vh, ${mediaQueries.tablet} 100vw, ${mediaQueries.desktop} 600px`}
         />
         <Image
           className={styles.profileImage}
-          src={`/images/profile2.jpg`}
+          src={`/images/profile/profile2.png`}
           alt="프로필"
           fill={true}
           sizes={`${mediaQueries.mobile} 30vh, ${mediaQueries.tablet} 100vw, ${mediaQueries.desktop} 600px`}
@@ -130,10 +126,11 @@ const Introduction = () => {
       <div id="box" className={styles.introTextContainer}>
         <div className={styles.introTextBox} ref={firstTextSection}>
           <p className={styles.introText}>안녕하세요</p>
-          <p className={styles.introText}>가난한 백수</p>
+          <p className={styles.introText}>백수 취준생</p>
           <p className={styles.introText}>이원형입니다</p>
         </div>
         <div className={styles.introTextBox} ref={secTextSection}>
+          <p className={styles.introText}>저의</p>
           <p className={styles.introText}>멤버쉽을</p>
           <p className={styles.introText}>소개합니다</p>
         </div>

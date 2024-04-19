@@ -22,13 +22,6 @@ export const introImageContainer = style({
   maxWidth: '600px',
   maxHeight: '750px',
   margin: 'auto',
-  filter: `
-  drop-shadow(5px 0px 0px rgba(240, 46, 170, 0.4))
-  drop-shadow(10px 0px 0px rgba(240, 46, 170, 0.3))
-  drop-shadow(15px 0px 0px rgba(240, 46, 170, 0.2))
-  drop-shadow(20px 0px 0px rgba(240, 46, 170, 0.1))
-  drop-shadow(25px 0px 0px rgba(240, 46, 170, 0.05))
-`,
   '@media': {
     [mediaQueries.mobile]: {
       width: '30vh',
@@ -56,7 +49,6 @@ export const introTextContainer = style({
 export const profileImage = style({
   minWidth: '150px',
   minHeight: '150px',
-  clipPath: 'polygon(30% 0%, 100% 0%, 70% 100%, 0% 100%)',
   '@media': {
     [mediaQueries.mobile]: {
       minWidth: '30vh',
