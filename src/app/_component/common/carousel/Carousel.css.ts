@@ -12,7 +12,7 @@ export const carouselContainer = style({
 
 export const buttonBase = style({
   border: 'none',
-  backgroundColor: '#f8f8f8',
+  backgroundColor: '#fff',
 });
 
 export const prevButton = style([buttonBase]);

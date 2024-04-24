@@ -1,10 +1,12 @@
 import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 
 import localFont from 'next/font/local';
 
 import '@/styles/reset.css.ts';
 import GSAPWrapper from '@/app/_component/GSAPWrapper.tsx';
 import { MSWComponent } from '@/app/_component/MSWComponent.tsx';
+import RQProvider from '@/app/_component/RQProvider.tsx';
 
 import * as styles from '@/app/RootLayout.css.ts';
 
@@ -26,6 +28,13 @@ export const metadata: Metadata = {
   description: '이원형에 대한 개인적인 후원을 통해 멤버쉽 혜택을 받아보세요.',
 };
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -38,7 +47,9 @@ export default function RootLayout({
       >
         <MSWComponent />
         <GSAPWrapper>
-          <main>{children}</main>
+          <RQProvider>
+            <main>{children}</main>
+          </RQProvider>
         </GSAPWrapper>
       </body>
     </html>
