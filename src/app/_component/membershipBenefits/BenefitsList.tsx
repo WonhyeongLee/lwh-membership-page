@@ -45,7 +45,7 @@ const BenefitsList: React.FC<BenefitsListProps> = ({ className }) => {
         {data?.map((benefit, index) => (
           <li key={index} className={styles.MembershipListItem}>
             <Image
-              src={'https://placehold.co/100.png'}
+              src={benefit.image || 'https://placehold.co/100.png'}
               width={100}
               height={100}
               alt={benefit.title}

@@ -40,9 +40,10 @@ export const CommonBenefitsComment = style({
 });
 
 export const CommonBenefitsItemWrapper = style({
+  columnGap: '50px',
   width: '100%',
   display: 'flex',
-  justifyContent: 'space-between',
+  justifyContent: 'center',
   alignItems: 'center',
   marginBottom: '2rem',
   '@media': {
@@ -56,10 +57,10 @@ export const CommonBenefitsItemWrapper = style({
 });
 
 export const CommonBenefitItem = style({
-  width: '30%',
+  width: '400px',
+  height: '400px',
   display: 'flex',
   flexDirection: 'column',
-  justifyContent: 'center',
   alignItems: 'center',
   border: `1px solid ${baseTheme.color.border}`,
   '@media': {
@@ -71,7 +72,7 @@ export const CommonBenefitItem = style({
 
 export const CommonBenefitImage = style({
   width: '100%',
-  height: 'auto',
+  height: '80%',
   borderBottom: `1px solid ${baseTheme.color.border}`,
 });
 
