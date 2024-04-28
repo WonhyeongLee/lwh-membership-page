@@ -3,7 +3,7 @@ import type { MembershipBenefit } from '@/assets/membershipBenefits.ts';
 const baseUrl =
   process.env.NEXT_PUBLIC_API_MOCK_ENABLED === 'enabled'
     ? process.env.NEXT_PUBLIC_MOCK_URL
-    : process.env.NEXT_PROD_URL;
+    : process.env.NEXT_PUBLIC_SERVICE_ENDPOINT;
 
 export async function getMembershipBenefits(
   title?: string,

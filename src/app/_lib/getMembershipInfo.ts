@@ -3,7 +3,7 @@ import type { MembershipInformation } from '@/assets/membershipInformation';
 const baseUrl =
   process.env.NEXT_PUBLIC_API_MOCK_ENABLED === 'enabled'
     ? process.env.NEXT_PUBLIC_MOCK_URL
-    : process.env.NEXT_PROD_URL;
+    : process.env.NEXT_PUBLIC_SERVICE_ENDPOINT;
 
 export async function getMembershipInfo(): Promise<MembershipInformation> {
   const response = await fetch(`${baseUrl}/api/memberships`, {
