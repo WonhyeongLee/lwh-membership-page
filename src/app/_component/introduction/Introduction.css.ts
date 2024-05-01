@@ -3,6 +3,7 @@ import { style } from '@vanilla-extract/css';
 import { mediaQueries } from '@/styles/mediaQueries.css.ts';
 
 export const introContainer = style({
+  visibility: 'hidden',
   display: 'grid',
   gridTemplateColumns: '1fr 1fr',
   alignItems: 'center',

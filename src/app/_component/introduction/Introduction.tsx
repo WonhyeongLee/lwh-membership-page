@@ -21,13 +21,15 @@ const Introduction = () => {
         type: 'wheel,touch,scroll',
         preventDefault: true,
       });
+      gsap.from(introContainer.current, {
+        autoAlpha: 0,
+      });
       gsap.from(`.${styles.introImageContainer} > :first-child`, {
         xPercent: -50,
         opacity: 0,
         duration: 1,
         ease: 'power2.In',
       });
-
       gsap.set(`.${styles.introImageContainer} > :nth-child(2)`, {
         visibility: 'hidden',
         position: 'absolute',
@@ -35,7 +37,6 @@ const Introduction = () => {
         left: 0,
         width: '100%',
       });
-
       gsap.from(`.${styles.introText}`, {
         xPercent: +30,
         opacity: 0,
