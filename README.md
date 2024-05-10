@@ -33,10 +33,9 @@ cd your-project-directory
 
 ```shell
 npm install
-npm run mock // mocking server 실행
+npm run mock // mocking server 실행해야 합니다
 npm run dev
 ```
-or
 ```shell
 npm run build
 npm run start
